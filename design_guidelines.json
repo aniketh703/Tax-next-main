@@ -1,0 +1,129 @@
+{
+  "theme": "Light & Dark Mode Support",
+  "archetype": "1 (Organic & Earthy) blended with 4 (Swiss & High-Contrast for Typography)",
+  "brand": {
+    "name": "TaxNext.in",
+    "promise": "Your compliance, handled properly.",
+    "tone": "Premium, serious, modern, readable, trustworthy, CA-firm"
+  },
+  "typography": {
+    "heading": {
+      "family": "'Playfair Display', serif",
+      "weights": [400, 600, 700],
+      "usage": "H1-H6, authoritative hero text, key section titles. Use tracking-tight."
+    },
+    "body": {
+      "family": "'Inter', sans-serif",
+      "weights": [400, 500, 600],
+      "usage": "Highly readable body copy, UI elements, forms, tables, helper text."
+    },
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight",
+      "h2": "text-3xl sm:text-4xl font-semibold tracking-tight",
+      "h3": "text-2xl sm:text-3xl font-medium tracking-tight",
+      "body": "text-base leading-relaxed text-foreground",
+      "caption": "text-sm text-muted-foreground",
+      "label": "text-sm font-medium mb-1.5 block",
+      "helper": "text-xs text-muted-foreground mt-1 block"
+    }
+  },
+  "colors": {
+    "light": {
+      "primary": "#1A4D2E (Deep Forest Green)",
+      "primary_foreground": "#FFFFFF",
+      "background": "#FBFBF9 (Off-white base)",
+      "foreground": "#1C201E (Dark text)",
+      "surface": "#FFFFFF (Cards/Popover)",
+      "muted": "#F2F5F3",
+      "muted_foreground": "#4E5A54",
+      "border": "#E8EDE9"
+    },
+    "dark": {
+      "primary": "hsl(143, 35%, 55%) (Soft Green for contrast)",
+      "background": "#121312 (Very dark green/grey)",
+      "surface": "#1D1F1E"
+    },
+    "rules": [
+      "Accent color used sparingly. Avoid full-screen green backgrounds.",
+      "Neutral surfaces for content.",
+      "Strong text contrast for accessibility."
+    ]
+  },
+  "spacing_and_layout": {
+    "grid": "Consistent 8px spacing system (Tailwind rem defaults).",
+    "rhythm": "Wide breathing room between sections (py-16 to py-24). Avoid dense layouts.",
+    "mobile": "Do not place too many features in one row. Full-width inputs. Labels above fields.",
+    "hero": "Concise, not overloaded.",
+    "forms": "Short, progressive disclosure. h-12 inputs on mobile, h-10 on desktop."
+  },
+  "components": {
+    "buttons": {
+      "height": "Generous on mobile (h-12). Standard on desktop (h-10).",
+      "radius": "Medium (rounded-md)",
+      "states": "Clear hover/pressed states. focus-visible ring.",
+      "variants": {
+        "primary": "bg-primary text-primary-foreground hover:bg-primary/90",
+        "secondary": "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        "ghost": "hover:bg-accent hover:text-accent-foreground",
+        "tertiary": "border border-input hover:bg-accent"
+      }
+    },
+    "cards": {
+      "padding": "Balanced padding (p-6 or p-8)",
+      "radius": "Medium (rounded-md to rounded-lg)",
+      "shadow": "Soft shadows only (shadow-sm, shadow-md). No harsh dropshadows.",
+      "border": "Subtle 1px border on light mode."
+    },
+    "tables": {
+      "readability": "Highly readable with clear row separation (border-b).",
+      "font": "Inter, text-sm."
+    },
+    "badges": {
+      "style": "Subtle, not loud. bg-muted text-muted-foreground or very light green."
+    },
+    "inputs": {
+      "mobile": "Full-width (w-full), labels above fields.",
+      "desktop": "Standard width, clear focus ring."
+    },
+    "states": {
+      "focus": "Visible focus states for keyboard users (ring-2 ring-primary ring-offset-2)",
+      "feedback": "Error, warning, success states must be calm and legible (e.g., muted red, soft amber, forest green)."
+    }
+  },
+  "visual_enhancers": {
+    "shadows": "Soft only. Avoid deep or neon shadows.",
+    "radius": "Medium (rounded-md/lg). No pill-shaped cards unless specific badge.",
+    "icons": "Simple, elegant icon style (Lucide React or Phosphor Icons Duotone).",
+    "motion": "Subtle transitions (transition-colors duration-200, simple accordion). NO flashy effects."
+  },
+  "anti_patterns": [
+    "No flashy effects or heavy animations.",
+    "No glassmorphism overload.",
+    "No neon gradients.",
+    "No cartoonish illustration style.",
+    "Avoid dense layouts and cramped spacing.",
+    "No labels next to inputs on mobile (must be stacked)."
+  ],
+  "media": {
+    "instructions_to_main_agent": "Use these precise image URLs. Do not use placeholders.",
+    "image_urls": [
+      {
+        "category": "hero",
+        "url": "https://images.unsplash.com/photo-1772588627342-5ec373e236d8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHwzfHx0YXglMjBkb2N1bWVudHMlMjBkZXNrfGVufDB8fHx8MTc3NDgxMjM5MXww&ixlib=rb-4.1.0&q=85",
+        "description": "Professional desk with tax forms and laptop."
+      },
+      {
+        "category": "testimonial_background",
+        "url": "https://images.unsplash.com/photo-1692133226337-55e513450a32?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHwzfHxmaW5hbmNpYWwlMjBjb25zdWx0YW50JTIwb2ZmaWNlfGVufDB8fHx8MTc3NDgxMjM5MHww&ixlib=rb-4.1.0&q=85",
+        "description": "Clean, minimal office environment."
+      },
+      {
+        "category": "services",
+        "url": "https://images.unsplash.com/photo-1713461983836-de0a45009424?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHwxfHxmaW5hbmNpYWwlMjBjb25zdWx0YW50JTIwb2ZmaWNlfGVufDB8fHx8MTc3NDgxMjM5MHww&ixlib=rb-4.1.0&q=85",
+        "description": "Financial consultation."
+      }
+    ]
+  },
+  "component_path": "/app/frontend/src/components/ui",
+  "instructions_to_main_agent": "Implement this design system by relying heavily on the updated tailwind.config.js and index.css tokens. Adhere to the typography pairing: Playfair Display for headings and Inter for body text. Enforce clear focus states with 'focus-visible:ring-2 focus-visible:ring-ring' and use generous padding/spacing."
+}
