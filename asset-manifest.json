@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Tax-next-main/static/css/main.75105b9a.css",
-    "main.js": "/Tax-next-main/static/js/main.cc5024d7.js",
+    "main.css": "/Tax-next-main/static/css/main.a1d0cac7.css",
+    "main.js": "/Tax-next-main/static/js/main.7fe6fbeb.js",
     "index.html": "/Tax-next-main/index.html",
-    "main.75105b9a.css.map": "/Tax-next-main/static/css/main.75105b9a.css.map",
-    "main.cc5024d7.js.map": "/Tax-next-main/static/js/main.cc5024d7.js.map"
+    "main.a1d0cac7.css.map": "/Tax-next-main/static/css/main.a1d0cac7.css.map",
+    "main.7fe6fbeb.js.map": "/Tax-next-main/static/js/main.7fe6fbeb.js.map"
   },
   "entrypoints": [
-    "static/css/main.75105b9a.css",
-    "static/js/main.cc5024d7.js"
+    "static/css/main.a1d0cac7.css",
+    "static/js/main.7fe6fbeb.js"
   ]
 }
