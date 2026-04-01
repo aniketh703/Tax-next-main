@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 import { ArrowRight, BookOpen, ChevronRight } from "lucide-react";
 
 const IMGS = {
-  budget:   "https://images.unsplash.com/photo-1758691736764-2a88e313b1f2?crop=entropy&cs=srgb&fm=jpg&w=600&q=75",
-  gst:      "https://images.unsplash.com/photo-1548950308-69fac3b90a45?crop=entropy&cs=srgb&fm=jpg&w=600&q=75",
-  nri:      "https://static.prod-images.emergentagent.com/jobs/aebe5bae-79f1-412a-a57c-d6d295c09f4e/images/f85ba65ea96c90d5ea843db949e4dbd2a9d3061c733ef41871a9ae66e9dc87e5.png",
+  budget:   "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?crop=entropy&cs=srgb&fm=jpg&w=600&q=75",
+  gst:      "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?crop=entropy&cs=srgb&fm=jpg&w=600&q=75",
+  nri:      "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?crop=entropy&cs=srgb&fm=jpg&w=600&q=75",
+  tax:      "https://images.unsplash.com/photo-1563986768609-322da13575f3?crop=entropy&cs=srgb&fm=jpg&w=600&q=75",
+  startup:  "https://images.unsplash.com/photo-1559136555-9303baea8ebd?crop=entropy&cs=srgb&fm=jpg&w=600&q=75",
+  compliance: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?crop=entropy&cs=srgb&fm=jpg&w=600&q=75",
 };
 
 const articles = [
@@ -41,7 +44,7 @@ const articles = [
   },
   {
     slug: "save-tax-deductions-2024-25",
-    img: IMGS.budget,
+    img: IMGS.tax,
     tag: "Tax Planning",
     title: "How to Save Tax Legally: Top Deductions for FY 2024-25",
     date: "November 2024",
@@ -51,7 +54,7 @@ const articles = [
   },
   {
     slug: "startup-compliance-calendar",
-    img: IMGS.gst,
+    img: IMGS.startup,
     tag: "Startups",
     title: "Startup India: Compliance Calendar and Key Deadlines",
     date: "October 2024",
@@ -60,7 +63,7 @@ const articles = [
   },
   {
     slug: "gst-input-tax-credit-explained",
-    img: IMGS.nri,
+    img: IMGS.gst,
     tag: "GST",
     title: "Understanding Input Tax Credit (ITC) Under GST",
     date: "September 2024",
@@ -69,7 +72,7 @@ const articles = [
   },
   {
     slug: "new-vs-old-tax-regime-comparison",
-    img: IMGS.budget,
+    img: IMGS.tax,
     tag: "Income Tax",
     title: "New vs Old Tax Regime: Which Is Better for You?",
     date: "August 2024",
@@ -78,7 +81,7 @@ const articles = [
   },
   {
     slug: "tds-guide-2024-25",
-    img: IMGS.gst,
+    img: IMGS.compliance,
     tag: "Compliance",
     title: "TDS: What Payers Need to Know in 2024-25",
     date: "July 2024",
@@ -122,7 +125,7 @@ export default function Insights() {
             Tax insights and practical guidance.
           </h1>
           <p className="font-body text-base text-[#4E5A54] leading-relaxed max-w-xl">
-            Plain-language articles on Indian tax law, GST, NRI compliance, and business regulations — written and reviewed by CA. Prasad.
+            Articles covering tax updates, GST developments, and regulatory changes — written and reviewed by VNAV & Associates professionals.
           </p>
         </div>
       </section>
@@ -239,7 +242,7 @@ export default function Insights() {
               </button>
             </div>
             <p className="font-body text-xs text-white/40 mt-2">
-              CA. Prasad writes every article personally.
+              Curated by the partners at VNAV & Associates.
             </p>
           </div>
         </div>

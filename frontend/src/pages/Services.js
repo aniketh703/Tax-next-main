@@ -1,168 +1,99 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   ArrowRight, CheckCircle, FileText, Globe, Building2,
   BarChart2, TrendingUp, Shield, Calculator, BookOpen,
   Briefcase, Users, Calendar, AlertCircle, Phone,
   ChevronRight, Layers
 } from "lucide-react";
+import Highlighter from "../components/ui/Highlighter";
+import SEO from "../components/SEO";
 
 /* ─── Service Data ──────────────────────────────────────────── */
 
-const individualServices = [
+const auditServices = [
   {
     icon: FileText,
-    title: "Salaried Employee ITR",
-    desc: "ITR-1 and ITR-2 filing. Form 16 review, HRA exemption, 80C and 80D deduction claims. All deductions verified before submission.",
-    anchor: "itr",
-  },
-  {
-    icon: Briefcase,
-    title: "Freelancer & Consultant ITR",
-    desc: "ITR-3 and ITR-4 for business income. Advance tax calculation, allowable expense claims, and presumptive taxation guidance.",
-    anchor: "itr",
-  },
-  {
-    icon: TrendingUp,
-    title: "Capital Gains Filing",
-    desc: "STCG and LTCG on shares, mutual funds, and property. Cost indexation applied correctly. Tax liability minimised within law.",
-    anchor: "itr",
-  },
-  {
-    icon: Globe,
-    title: "NRI Income Tax Return",
-    desc: "India-source income reporting, DTAA benefit claims, TDS refunds, and residential status determination for compliance.",
-    anchor: "nri",
-  },
-  {
-    icon: Calculator,
-    title: "Advance Tax Planning",
-    desc: "Quarterly advance tax estimates to avoid penal interest under Sections 234B and 234C. Works for salaried, business, and capital gains income.",
-    anchor: "itr",
-  },
-  {
-    icon: AlertCircle,
-    title: "Income Tax Notice Response",
-    desc: "Assessment notices, scrutiny orders, demand intimations, and tax department correspondence — reviewed and responded to by CA. Prasad.",
-    anchor: "itr",
-    highlight: true,
-  },
-];
-
-const gstServices = [
-  {
-    icon: FileText,
-    title: "GST Registration",
-    desc: "Compulsory and voluntary GST registration. Assessment of threshold applicability, GSTIN obtained with correct business classification.",
+    title: "Statutory & Internal Audits",
+    desc: "Statutory and internal audits in accordance with applicable auditing standards.",
   },
   {
     icon: BarChart2,
-    title: "Monthly Return Filing",
-    desc: "GSTR-1 (outward supplies) and GSTR-3B (summary return with tax payment). Filed before the statutory due date, every month.",
-  },
+    title: "Tax Audits & Reviews",
+    desc: "Comprehensive tax audits and financial reviews for accurate reporting.",
+  }
+];
+
+const directServices = [
   {
-    icon: Calendar,
-    title: "Quarterly QRMP Filing",
-    desc: "For businesses eligible under the Quarterly Return Monthly Payment scheme — returns filed correctly with IFF and challan management.",
-  },
-  {
-    icon: BookOpen,
-    title: "Annual Return (GSTR-9)",
-    desc: "Comprehensive annual return reconciling all monthly returns, ITC claimed, and tax paid. GSTR-9C reconciliation statement where applicable.",
+    icon: Calculator,
+    title: "Return Filing",
+    desc: "Accurate preparation and filing of income tax returns for individuals and businesses.",
   },
   {
     icon: Shield,
-    title: "ITC Reconciliation",
-    desc: "Input tax credit mismatch resolution between GSTR-2B and purchase records. Ensures no eligible credit is left on the table.",
-  },
-  {
-    icon: AlertCircle,
-    title: "GST Notice & Assessment",
-    desc: "Show-cause notices, demand orders, and department enquiries — assessed, replied to, and followed through by CA. Prasad.",
-    highlight: true,
-  },
+    title: "Regulatory Advisory",
+    desc: "Advisory within regulatory framework and representation before tax authorities.",
+  }
 ];
 
-const businessServices = [
+const indirectServices = [
+  {
+    icon: FileText,
+    title: "GST Registration & Returns",
+    desc: "GST registration and regular return filing as per the GST Act and Rules.",
+  },
+  {
+    icon: BookOpen,
+    title: "Compliance Support",
+    desc: "Ongoing support and assistance with indirect tax regulations and queries.",
+  }
+];
+
+const advisoryServices = [
+  {
+    icon: TrendingUp,
+    title: "Financial Planning",
+    desc: "Strategic financial planning and structuring for business operations.",
+  },
+  {
+    icon: Users,
+    title: "Compliance Advisory",
+    desc: "Compliance advisory ensuring the engagement meets applicable legal obligations.",
+  }
+];
+
+const regulatoryServices = [
   {
     icon: Building2,
-    title: "Private Limited Company",
-    desc: "Name reservation, MCA incorporation, DSC and DIN, Certificate of Incorporation, and first board meeting minutes.",
-  },
-  {
-    icon: Layers,
-    title: "LLP Formation",
-    desc: "LLP agreement drafting, designated partner registration, DPIN, and LLP incorporation certificate from MCA.",
-  },
-  {
-    icon: Users,
-    title: "Startup India Registration",
-    desc: "DPIIT recognition application, startup certificate, and guidance on tax exemptions available under Section 80-IAC.",
+    title: "Company Incorporation",
+    desc: "Registration of Private Limited Companies and LLPs.",
   },
   {
     icon: FileText,
-    title: "ROC Annual Filing",
-    desc: "Form AOC-4, MGT-7, DIR-3 KYC, and all mandatory MCA filings. Directors kept compliant. No penalties for missed deadlines.",
-  },
-  {
-    icon: BookOpen,
-    title: "Bookkeeping & Accounts",
-    desc: "Monthly or quarterly accounts maintenance. P&L, balance sheet, and bank reconciliation prepared for your records and compliance.",
+    title: "ROC Compliance",
+    desc: "Filing and tracking of mandatory ROC compliances and forms.",
   },
   {
     icon: Shield,
-    title: "Tax Audit (Section 44AB)",
-    desc: "Statutory tax audit for businesses exceeding the prescribed turnover threshold. Report filed with ITR before the due date.",
-  },
-];
-
-const vcfoServices = [
-  {
-    icon: BarChart2,
-    title: "Monthly MIS Reporting",
-    desc: "Structured financial statements every month. Revenue, expenses, EBITDA, and key ratios — ready for management and investor review.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Cash Flow Management",
-    desc: "Monthly cash flow projections, working capital review, and early-warning visibility on shortfalls. Particularly useful for growing businesses.",
-  },
-  {
-    icon: Calculator,
-    title: "Annual Tax Planning",
-    desc: "Year-round tax optimisation. Salary structuring, advance tax planning, and deduction strategy reviewed before each assessment year.",
-  },
-  {
-    icon: Users,
-    title: "Investor-Ready Financials",
-    desc: "Clean, well-formatted financial statements and projections prepared in formats suitable for angel rounds, venture capital, and bank lending.",
-  },
-  {
-    icon: Calendar,
-    title: "Compliance Calendar Management",
-    desc: "All statutory deadlines — GST, TDS, advance tax, ROC, FEMA — tracked and actioned without you needing to follow up.",
-  },
-  {
-    icon: Briefcase,
-    title: "Board & Founder Advisory",
-    desc: "Periodic calls with CA. Prasad to review the financial position, plan for the next quarter, and address any compliance questions.",
-  },
+    title: "Certification Services",
+    desc: "Issuance of necessary certificates required for business operations.",
+  }
 ];
 
 /* ─── Sub-components ────────────────────────────────────────── */
 
 function ServiceCard({ icon: Icon, title, desc, highlight }) {
   return (
-    <div
-      data-testid={`service-card-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
-      className={`group rounded-xl border p-6 transition-all duration-200 ${
+    <motion.div
+      variants={fadeInUp}
+      whileHover={{ y: -5, boxShadow: "0 12px 24px -10px rgba(0,0,0,0.12)" }}
+      className={`group rounded-xl border p-6 transition-all duration-300 ${
         highlight
           ? "bg-[#1A4D2E]/[0.04] border-[#1A4D2E]/20 hover:border-[#1A4D2E]/40"
           : "bg-white border-[#E8EDE9] hover:border-[#1A4D2E]/20"
       }`}
-      style={{ boxShadow: "none" }}
-      onMouseEnter={e => e.currentTarget.style.boxShadow = highlight ? "0 4px 20px -4px rgba(26,77,46,0.12)" : "0 4px 16px -4px rgba(0,0,0,0.06)"}
-      onMouseLeave={e => e.currentTarget.style.boxShadow = "none"}
     >
       <div className={`w-9 h-9 rounded-lg flex items-center justify-center mb-4 transition-colors ${
         highlight
@@ -183,7 +114,7 @@ function ServiceCard({ icon: Icon, title, desc, highlight }) {
         {title}
       </h3>
       <p className="font-body text-[0.8375rem] text-[#4E5A54] leading-[1.75]">{desc}</p>
-    </div>
+    </motion.div>
   );
 }
 
@@ -200,7 +131,7 @@ function SectionCTA({ label, to = "/contact" }) {
       </Link>
       <div className="flex items-center gap-2 text-[0.8125rem] text-[#4E5A54] font-body">
         <CheckCircle size={13} strokeWidth={1.5} className="text-[#1A4D2E] shrink-0" />
-        Response within 24 hours · No obligation at the consultation stage
+        Strictly confidential communications · Professional Standards
       </div>
     </div>
   );
@@ -208,10 +139,11 @@ function SectionCTA({ label, to = "/contact" }) {
 
 /* ─── Category Nav ──────────────────────────────────────────── */
 const NAV_ITEMS = [
-  { label: "Individual Tax", id: "individual" },
-  { label: "GST & Indirect Tax", id: "gst" },
-  { label: "Business Compliance", id: "business" },
-  { label: "Virtual CFO", id: "vcfo" },
+  { label: "Audit & Assurance", id: "audit" },
+  { label: "Direct Taxation", id: "direct" },
+  { label: "Indirect Tax (GST)", id: "indirect" },
+  { label: "Business Advisory", id: "business" },
+  { label: "Regulatory Services", id: "regulatory" },
 ];
 
 function scrollTo(id) {
@@ -226,46 +158,71 @@ function scrollTo(id) {
 /* ─── Service Sections Config ───────────────────────────────── */
 const sections = [
   {
-    id: "individual",
+    id: "audit",
     num: "01",
-    label: "Individual Taxation",
-    heading: "Income tax services for individuals and NRIs.",
-    body: "Whether you are salaried, self-employed, an NRI with India-source income, or have complex capital gains — your return is prepared and reviewed by CA. Prasad before it is filed.",
-    services: individualServices,
-    ctaLabel: "Discuss Your ITR Requirements",
+    label: "Audit & Assurance",
+    heading: "Audit & Assurance",
+    body: "Statutory audits, internal audits, tax audits, and financial reviews.",
+    services: auditServices,
+    ctaLabel: "Communication Channels",
     bg: "bg-[#FBFBF9]",
   },
   {
-    id: "gst",
+    id: "direct",
     num: "02",
-    label: "GST & Indirect Tax",
-    heading: "GST compliance, returns, and notice handling.",
-    body: "From GST registration to annual returns — filings are submitted on time and ITC claims are reconciled correctly. If a notice arrives, it is addressed by the same CA who filed the return.",
-    services: gstServices,
-    ctaLabel: "Discuss GST Requirements",
+    label: "Direct Taxation",
+    heading: "Direct Taxation",
+    body: "Return filing, advisory within regulatory framework, and representation.",
+    services: directServices,
+    ctaLabel: "Communication Channels",
     bg: "bg-white",
+  },
+  {
+    id: "indirect",
+    num: "03",
+    label: "Indirect Tax (GST)",
+    heading: "Indirect Tax (GST)",
+    body: "Registration, return filing, and compliance support.",
+    services: indirectServices,
+    ctaLabel: "Communication Channels",
+    bg: "bg-[#FBFBF9]",
   },
   {
     id: "business",
-    num: "03",
-    label: "Business Compliance",
-    heading: "Incorporation, annual filings, and business accounts.",
-    body: "From setting up the right legal structure to keeping your business compliant year-on-year — ROC filings, bookkeeping, and tax audit handled as part of an ongoing engagement.",
-    services: businessServices,
-    ctaLabel: "Talk to a CA About Your Business",
-    bg: "bg-[#FBFBF9]",
-  },
-  {
-    id: "vcfo",
     num: "04",
-    label: "Virtual CFO",
-    heading: "Ongoing financial oversight for growing businesses.",
-    body: "The financial discipline of a full-time CFO, without the overhead. CA. Prasad acts as your financial anchor — managing reporting, tax planning, compliance deadlines, and investor readiness on a retained basis.",
-    services: vcfoServices,
-    ctaLabel: "Explore Virtual CFO Services",
+    label: "Business Advisory",
+    heading: "Business Advisory",
+    body: "Financial planning, structuring, and compliance advisory.",
+    services: advisoryServices,
+    ctaLabel: "Communication Channels",
     bg: "bg-white",
   },
+  {
+    id: "regulatory",
+    num: "05",
+    label: "Regulatory Services",
+    heading: "Regulatory Services",
+    body: "Company Incorporation (Private Limited / LLP), ROC Compliance and Filings, Certification Services.",
+    services: regulatoryServices,
+    ctaLabel: "Communication Channels",
+    bg: "bg-[#FBFBF9]",
+  },
 ];
+
+
+/* ─── Motion Variants ────────────────────────────────────────── */
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.6, ease: [0.215, 0.61, 0.355, 1] }
+};
+
+const staggerContainer = {
+  initial: {},
+  whileInView: { transition: { staggerChildren: 0.1 } },
+  viewport: { once: true }
+};
 
 /* ─── Services Page ─────────────────────────────────────────── */
 export default function Services() {
@@ -279,37 +236,43 @@ export default function Services() {
   return (
     <>
       {/* ── Page Hero ─────────────────────────────────────── */}
-      <section className="bg-white border-b border-[#E8EDE9]">
+      <motion.section 
+        initial="initial"
+        whileInView="whileInView"
+        viewport={{ once: true }}
+        variants={staggerContainer}
+        className="bg-white border-b border-[#E8EDE9]"
+      >
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-10 pb-14 lg:pt-14 lg:pb-20">
           {/* Breadcrumb */}
-          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 mb-8 text-[0.8125rem] text-[#4E5A54] font-body">
+          <motion.nav variants={fadeInUp} aria-label="Breadcrumb" className="flex items-center gap-1.5 mb-8 text-[0.8125rem] text-[#4E5A54] font-body">
             <Link to="/" className="hover:text-[#1A4D2E] transition-colors">Home</Link>
             <ChevronRight size={13} className="text-[#C4CAC6]" aria-hidden="true" />
             <span aria-current="page" className="text-[#1C201E] font-medium">Services</span>
-          </nav>
+          </motion.nav>
 
           <div className="grid lg:grid-cols-[1fr_auto] gap-10 lg:gap-16 items-end">
             <div>
-              <span className="block text-[10.5px] uppercase tracking-[0.16em] font-semibold text-[#1A4D2E] mb-4 font-body">
+              <motion.span variants={fadeInUp} className="block text-[10.5px] uppercase tracking-[0.16em] font-semibold text-[#1A4D2E] mb-4 font-body">
                 What We Do
-              </span>
-              <h1 className="font-heading font-semibold text-[2.25rem] sm:text-[2.75rem] lg:text-[3.125rem] tracking-tight leading-[1.1] text-[#1C201E] mb-6 max-w-3xl">
-                Tax, GST, and business<br className="hidden sm:block" /> compliance — handled properly.
-              </h1>
-              <p className="font-body text-[1rem] text-[#4E5A54] leading-[1.8] max-w-xl">
-                All work is reviewed personally by{" "}
-                <strong className="text-[#1C201E] font-medium">CA. V.V.N.Prasad. Gupta</strong>{" "}
-                before submission. No delegation to junior staff. No automated outputs standing in for professional judgment.
-              </p>
+              </motion.span>
+              <motion.h1 variants={fadeInUp} className="font-heading font-semibold text-[2.25rem] sm:text-[2.75rem] lg:text-[3.125rem] tracking-tight leading-[1.1] text-[#1C201E] mb-6 max-w-3xl">
+                Tax, GST, and <Highlighter>business</Highlighter><br className="hidden sm:block" /> compliance — handled properly.
+              </motion.h1>
+              <motion.p variants={fadeInUp} className="font-body text-[1rem] text-[#4E5A54] leading-[1.8] max-w-xl">
+                All work is reviewed personally by our professional team{" "}
+                <strong className="text-[#1C201E] font-medium">VNAV & Associates</strong>{" "}
+                before submission. No <span className="text-emphasize">delegation to junior staff</span>. No automated outputs standing in for professional judgment.
+              </motion.p>
             </div>
 
             {/* Trust callout — top right */}
-            <div className="hidden lg:block shrink-0">
+            <motion.div variants={fadeInUp} className="hidden lg:block shrink-0">
               <div className="bg-[#F2F5F3] border border-[#E8EDE9] rounded-xl px-6 py-5 space-y-3 w-[220px]">
                 {[
-                  { val: "500+", lbl: "Client engagements" },
-                  { val: "10+", lbl: "Years in practice" },
-                  { val: "0", lbl: "Late filings" },
+                  { val: "Audit", lbl: "Statutory & Tax" },
+                  { val: "Tax", lbl: "Direct & Indirect" },
+                  { val: "Advisory", lbl: "Business Compliance" },
                 ].map(({ val, lbl }) => (
                   <div key={lbl} className="flex items-baseline gap-2.5">
                     <span className="font-heading font-semibold text-[1.5rem] text-[#1C201E] tracking-tight leading-none">{val}</span>
@@ -317,10 +280,10 @@ export default function Services() {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ── Sticky Category Nav ────────────────────────────── */}
       <div
@@ -350,86 +313,86 @@ export default function Services() {
 
       {/* ── Service Sections ─────────────────────────────────── */}
       {sections.map((section, idx) => (
-        <section
+        <motion.section
           key={section.id}
           id={section.id}
-          data-testid={`section-${section.id}`}
+          {...fadeInUp}
           className={`${section.bg} ${idx !== sections.length - 1 ? "border-b border-[#E8EDE9]" : ""}`}
         >
           <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-16 lg:py-24">
             {/* Section header */}
-            <div className="mb-10 lg:mb-14">
+            <motion.div variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true }} className="mb-10 lg:mb-14">
               <div className="flex items-center gap-4 mb-5">
-                <span
+                <motion.span
+                  variants={fadeInUp}
                   className="font-heading font-light text-[3rem] leading-none select-none tabular-nums"
                   style={{ color: "#E2E8E4" }}
                 >
                   {section.num}
-                </span>
-                <span className="font-body text-[10.5px] uppercase tracking-[0.16em] font-semibold text-[#1A4D2E]">
+                </motion.span>
+                <motion.span variants={fadeInUp} className="font-body text-[10.5px] uppercase tracking-[0.16em] font-semibold text-[#1A4D2E]">
                   {section.label}
-                </span>
+                </motion.span>
               </div>
               <div className="grid lg:grid-cols-[1fr_1fr] gap-6 lg:gap-16 items-end">
-                <h2 className="font-heading font-medium text-[1.875rem] sm:text-[2.25rem] text-[#1C201E] tracking-tight leading-[1.2]">
+                <motion.h2 variants={fadeInUp} className="font-heading font-medium text-[1.875rem] sm:text-[2.25rem] text-[#1C201E] tracking-tight leading-[1.2]">
                   {section.heading}
-                </h2>
-                <p className="font-body text-[0.9375rem] text-[#4E5A54] leading-[1.8]">
+                </motion.h2>
+                <motion.p variants={fadeInUp} className="font-body text-[0.9375rem] text-[#4E5A54] leading-[1.8]">
                   {section.body}
-                </p>
+                </motion.p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Service cards */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+            <motion.div variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true }} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
               {section.services.map((s) => (
                 <ServiceCard key={s.title} {...s} />
               ))}
-            </div>
+            </motion.div>
 
-            <SectionCTA label={section.ctaLabel} />
+            <motion.div variants={fadeInUp}>
+              <SectionCTA label={section.ctaLabel} />
+            </motion.div>
           </div>
-        </section>
+        </motion.section>
       ))}
 
       {/* ── Final CTA ───────────────────────────────────────── */}
-      <section data-testid="services-final-cta" className="bg-[#1A4D2E]">
+      <motion.section {...fadeInUp} className="bg-[#1A4D2E]">
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-16 lg:py-20">
-          <div className="max-w-2xl mx-auto text-center">
-            <span className="block text-[10.5px] uppercase tracking-[0.16em] font-semibold text-white/50 mb-5 font-body">
+          <motion.div variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true }} className="max-w-2xl mx-auto text-center">
+            <motion.span variants={fadeInUp} className="block text-[10.5px] uppercase tracking-[0.16em] font-semibold text-white/50 mb-5 font-body">
               Get Started
-            </span>
-            <h2 className="font-heading font-semibold text-[1.875rem] sm:text-[2.375rem] text-white tracking-tight mb-4 leading-[1.2]">
-              Not sure which service applies to you?
-            </h2>
-            <p className="font-body text-[0.9375rem] text-white/65 mb-10 leading-[1.8] max-w-lg mx-auto">
-              Book a free 15-minute call with CA. Prasad. Describe your situation and he will
-              confirm exactly what is needed — and what it will cost — before any work begins.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
+            </motion.span>
+            <motion.h2 variants={fadeInUp} className="font-heading font-semibold text-[1.875rem] sm:text-[2.375rem] text-white tracking-tight mb-4 leading-[1.2]">
+              Contact VNAV & Associates
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="font-body text-[0.9375rem] text-white/65 mb-10 leading-[1.8] max-w-lg mx-auto">
+              Reach out to our offices to discuss your professional compliance and advisory requirements.
+            </motion.p>
+            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
               <Link
                 to="/contact"
-                data-testid="services-cta-btn"
                 className="inline-flex items-center justify-center gap-2 bg-white text-[#1A4D2E] rounded-lg px-8 py-3.5 font-semibold font-body text-[0.9375rem] hover:bg-[#F2F5F3] transition-colors shadow-sm tracking-wide"
               >
-                Book a Free Consultation
+                Contact Us
                 <ArrowRight size={16} strokeWidth={1.5} />
               </Link>
               <a
-                href="tel:+910000000000"
-                data-testid="services-call-btn"
+                href="tel:+919440428417"
                 className="inline-flex items-center justify-center gap-2 bg-transparent text-white border border-white/25 rounded-lg px-8 py-3.5 font-medium font-body text-[0.9375rem] hover:bg-white/8 transition-colors"
               >
                 <Phone size={16} strokeWidth={1.5} />
-                +91 00000 00000
+                +91 94404 28417
               </a>
-            </div>
-            <p className="font-body text-[0.75rem] text-white/35">
-              No obligation at the consultation stage&nbsp;·&nbsp;Response within 24 hours
-            </p>
-          </div>
+            </motion.div>
+            <motion.p variants={fadeInUp} className="font-body text-[0.75rem] text-white/35">
+              Strictly confidential communications&nbsp;·&nbsp;Professional engagement
+            </motion.p>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </>
   );
 }

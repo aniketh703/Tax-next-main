@@ -7,83 +7,43 @@ import {
 /* ─── Resource data ─────────────────────────────────────────── */
 const resources = [
   {
-    id: "itr-salaried-guide",
-    icon: FileText,
-    title: "ITR Filing Guide for Salaried Employees",
-    type: "PDF Guide",
-    category: "guides",
+    id: "income-tax-slabs",
+    icon: BookOpen,
+    title: "Income Tax Slabs — FY 2026-27",
+    type: "Reference",
+    category: "references",
     tag: "Income Tax",
-    desc: "Step-by-step guide to filing your income tax return as a salaried employee — Form 16, deductions, and deadline.",
-    pages: "12 pages",
-  },
-  {
-    id: "gst-registration-checklist",
-    icon: FileText,
-    title: "GST Registration — Documents Checklist",
-    type: "Checklist",
-    category: "checklists",
-    tag: "GST",
-    desc: "Complete list of documents required for GST registration for individuals, sole proprietors, and companies.",
+    desc: "Detailed income tax slab rates under the Income Tax Act, 2025, covering New and Old regimes.",
     pages: "2 pages",
   },
   {
-    id: "form-26as-ais-guide",
+    id: "gst-rate-summary",
     icon: FileText,
-    title: "Form 26AS & AIS — How to Read Them",
-    type: "Guide",
-    category: "guides",
-    tag: "Income Tax",
-    desc: "A plain-language explanation of your annual tax credit statement and Annual Information Statement.",
-    pages: "8 pages",
-  },
-  {
-    id: "tax-regime-comparison",
-    icon: BookOpen,
-    title: "New vs Old Tax Regime — Comparison Chart",
+    title: "GST 2.0 Rate Summary",
     type: "Reference",
     category: "references",
-    tag: "Tax Planning",
-    desc: "Side-by-side breakeven analysis to help you choose the right regime for FY 2024-25.",
-    pages: "3 pages",
-  },
-  {
-    id: "nri-tax-reference",
-    icon: FileText,
-    title: "NRI Tax Obligations — Quick Reference",
-    type: "Reference Card",
-    category: "references",
-    tag: "NRI",
-    desc: "Key obligations, timelines, applicable forms, and DTAA guidance for Non-Resident Indians.",
-    pages: "4 pages",
-  },
-  {
-    id: "startup-compliance-checklist",
-    icon: FileText,
-    title: "Startup Compliance Timeline",
-    type: "Checklist",
-    category: "checklists",
-    tag: "Startups",
-    desc: "From incorporation to annual ROC filings — a compliance timeline every startup founder should have.",
+    tag: "GST",
+    desc: "A summary of GST rates (0%, 5%, 18%, 40%) for various goods and services categories in 2026.",
     pages: "5 pages",
   },
   {
-    id: "80c-investment-guide",
-    icon: BookOpen,
-    title: "Section 80C Tax Saving — Options and Limits",
-    type: "Guide",
-    category: "guides",
-    tag: "Tax Planning",
-    desc: "All 80C investment options (PPF, ELSS, LIC, NSC, home loan) explained with the ₹1.5 lakh cap in context.",
-    pages: "6 pages",
+    id: "compliance-checklists",
+    icon: FileText,
+    title: "Corporate Compliance Checklist",
+    type: "Checklist",
+    category: "checklists",
+    tag: "Compliance",
+    desc: "Statutory checklists for monthly, quarterly, and annual business and tax compliance for FY 2026-27.",
+    pages: "4 pages",
   },
   {
-    id: "gst-returns-calendar",
+    id: "due-date-calendar",
     icon: FileText,
-    title: "GST Returns Quick Reference Card",
-    type: "Reference Card",
+    title: "FY 2026-27 Due Date Card",
+    type: "Reference Guide",
     category: "references",
-    tag: "GST",
-    desc: "All GSTR forms, filing frequency, due dates, and who needs to file — on one page.",
+    tag: "Compliance",
+    desc: "One-page printable card of statutory due dates for Income Tax, GST, TDS, and ROC filings.",
     pages: "1 page",
   },
 ];
@@ -130,7 +90,7 @@ export default function Resources() {
             Guides, checklists, and reference materials.
           </h1>
           <p className="font-body text-base text-[#4E5A54] leading-relaxed max-w-xl">
-            Practical resources to help you understand Indian tax and compliance requirements. All prepared and reviewed by CA. Prasad.
+            Practical resources to help you understand Indian tax and compliance requirements. All prepared and reviewed by VNAV & Associates professionals.
           </p>
         </div>
       </section>
@@ -193,13 +153,13 @@ export default function Resources() {
                     <span className="font-body text-[0.6875rem] text-[#4E5A54]">{r.type}</span>
                     <span className="font-body text-[0.6875rem] text-[#4E5A54]"> · {r.pages}</span>
                   </div>
-                  <button
-                    data-testid={`download-btn-${r.id}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-[#1A4D2E] font-body hover:gap-2 transition-all py-1.5 focus-visible:ring-2 focus-visible:ring-[#1A4D2E] focus-visible:ring-offset-1 rounded"
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#1A4D2E] font-body hover:gap-2 transition-all py-1.5 focus-visible:ring-2 focus-visible:ring-[#1A4D2E] focus-visible:ring-offset-1 rounded"
                   >
                     <Download size={12} strokeWidth={1.5} />
-                    Coming soon
-                  </button>
+                    Request PDF
+                  </Link>
                 </div>
               </div>
             );
@@ -241,7 +201,7 @@ export default function Resources() {
               Need personalised guidance?
             </h3>
             <p className="font-body text-sm text-[#4E5A54] leading-relaxed">
-              These resources are general. For advice tailored to your specific situation, speak directly with CA. Prasad before making any tax decisions.
+              These resources are general. For advice tailored to your specific situation, speak directly with VNAV & Associates before making any tax decisions.
             </p>
           </div>
           <div className="sm:text-right">

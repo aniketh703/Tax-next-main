@@ -12,94 +12,87 @@ const typeConfig = {
 
 const months = [
   {
-    id: "apr", month: "April 2025",
+    id: "apr", month: "April 2026",
     deadlines: [
-      { date: "7 Apr",  task: "TDS Deposit for March 2025",                   type: "tds" },
-      { date: "11 Apr", task: "GSTR-1 for March 2025 (Monthly filers)",       type: "gst" },
+      { date: "7 Apr",  task: "TDS Deposit for March 2026 (Except non-salary)", type: "tds" },
+      { date: "11 Apr", task: "GSTR-1 for March 2026 (Monthly filers)",       type: "gst" },
       { date: "13 Apr", task: "GSTR-2B auto-populated for March",             type: "gst" },
-      { date: "20 Apr", task: "GSTR-3B for March 2025",                       type: "gst" },
-      { date: "30 Apr", task: "TDS Certificate (Form 16A) — Q3",              type: "tds" },
+      { date: "20 Apr", task: "GSTR-3B for March 2026",                       type: "gst" },
+      { date: "30 Apr", task: "TDS Payment for March (Non-Salary payments)",  type: "tds" },
     ],
   },
   {
-    id: "may", month: "May 2025",
+    id: "may", month: "May 2026",
     deadlines: [
-      { date: "7 May",  task: "TDS Deposit for April 2025",                   type: "tds" },
-      { date: "11 May", task: "GSTR-1 for April 2025 (Monthly filers)",       type: "gst" },
-      { date: "13 May", task: "GSTR-2B auto-populated for April",             type: "gst" },
-      { date: "20 May", task: "GSTR-3B for April 2025",                       type: "gst" },
-      { date: "31 May", task: "TDS Return Filing — Q4 (FY 2024-25)",          type: "tds" },
+      { date: "7 May",  task: "TDS Deposit for April 2026",                   type: "tds" },
+      { date: "11 May", task: "GSTR-1 for April 2026 (Monthly filers)",       type: "gst" },
+      { date: "20 May", task: "GSTR-3B for April 2026",                       type: "gst" },
+      { date: "31 May", task: "TDS Return Filing — Q4 (FY 2025-26)",          type: "tds" },
     ],
   },
   {
-    id: "jun", month: "June 2025",
+    id: "jun", month: "June 2026",
     deadlines: [
-      { date: "7 Jun",  task: "TDS Deposit for May 2025",                     type: "tds" },
-      { date: "11 Jun", task: "GSTR-1 for May 2025 (Monthly filers)",         type: "gst" },
-      { date: "15 Jun", task: "Advance Tax — 1st Instalment (15% of tax)",    type: "tax" },
-      { date: "20 Jun", task: "GSTR-3B for May 2025",                         type: "gst" },
-      { date: "30 Jun", task: "Form 16 Issue to Employees (FY 2024-25)",      type: "tds" },
+      { date: "7 Jun",  task: "TDS Deposit for May 2026",                     type: "tds" },
+      { date: "11 Jun", task: "GSTR-1 for May 2026 (Monthly filers)",         type: "gst" },
+      { date: "15 Jun", task: "Advance Tax — 1st Instalment (15%)",          type: "tax" },
+      { date: "20 Jun", task: "GSTR-3B for May 2026",                         type: "gst" },
     ],
   },
   {
-    id: "jul", month: "July 2025",
+    id: "jul", month: "July 2026",
     deadlines: [
-      { date: "7 Jul",  task: "TDS Deposit for June 2025",                    type: "tds" },
-      { date: "11 Jul", task: "GSTR-1 for June 2025 (Monthly filers)",        type: "gst" },
-      { date: "20 Jul", task: "GSTR-3B for June 2025",                        type: "gst" },
+      { date: "7 Jul",  task: "TDS Deposit for June 2026",                    type: "tds" },
+      { date: "11 Jul", task: "GSTR-1 for June 2026 (Monthly filers)",        type: "gst" },
+      { date: "20 Jul", task: "GSTR-3B for June 2026",                        type: "gst" },
       { date: "31 Jul", task: "ITR Filing Deadline — Individuals (Non-audit)", type: "tax" },
-      { date: "31 Jul", task: "TDS Return — Q1 FY 2025-26",                   type: "tds" },
+      { date: "31 Jul", task: "TDS Return — Q1 FY 2026-27",                   type: "tds" },
     ],
   },
   {
-    id: "aug", month: "August 2025",
+    id: "aug", month: "August 2026",
     deadlines: [
-      { date: "7 Aug",  task: "TDS Deposit for July 2025",                    type: "tds" },
-      { date: "11 Aug", task: "GSTR-1 for July 2025 (Monthly filers)",        type: "gst" },
-      { date: "20 Aug", task: "GSTR-3B for July 2025",                        type: "gst" },
-      { date: "31 Aug", task: "TDS Certificate (Form 16A) — Q1 FY 2025-26",  type: "tds" },
+      { date: "7 Aug",  task: "TDS Deposit for July 2026",                    type: "tds" },
+      { date: "11 Aug", task: "GSTR-1 for July 2026 (Monthly filers)",        type: "gst" },
+      { date: "20 Aug", task: "GSTR-3B for July 2026",                        type: "gst" },
+      { date: "31 Aug", task: "TDS Certificate (Form 16A) — Q1 FY 2026-27",  type: "tds" },
     ],
   },
   {
-    id: "sep", month: "September 2025",
+    id: "sep", month: "September 2026",
     deadlines: [
-      { date: "7 Sep",  task: "TDS Deposit for August 2025",                  type: "tds" },
-      { date: "11 Sep", task: "GSTR-1 for August 2025 (Monthly filers)",      type: "gst" },
+      { date: "7 Sep",  task: "TDS Deposit for August 2026",                  type: "tds" },
+      { date: "11 Sep", task: "GSTR-1 for August 2026 (Monthly filers)",      type: "gst" },
       { date: "15 Sep", task: "Advance Tax — 2nd Instalment (45% cumulative)", type: "tax" },
-      { date: "20 Sep", task: "GSTR-3B for August 2025",                      type: "gst" },
-      { date: "30 Sep", task: "Tax Audit Report — 44AB (Due Date)",           type: "tax" },
-      { date: "30 Sep", task: "AGM Deadline — Companies incorporated in FY25", type: "roc" },
+      { date: "30 Sep", task: "Tax Audit Report — 44AB (Statutory Due Date)", type: "tax" },
+      { date: "30 Sep", task: "AGM Deadline — Companies for FY 2025-26",      type: "roc" },
     ],
   },
   {
-    id: "oct", month: "October 2025",
+    id: "oct", month: "October 2026",
     deadlines: [
-      { date: "7 Oct",  task: "TDS Deposit for September 2025",               type: "tds" },
-      { date: "11 Oct", task: "GSTR-1 for September 2025 (Monthly filers)",   type: "gst" },
-      { date: "20 Oct", task: "GSTR-3B for September 2025",                   type: "gst" },
-      { date: "31 Oct", task: "ITR Filing — Audit cases",                     type: "tax" },
-      { date: "31 Oct", task: "TDS Return — Q2 FY 2025-26",                   type: "tds" },
+      { date: "7 Oct",  task: "TDS Deposit for September 2026",               type: "tds" },
+      { date: "11 Oct", task: "GSTR-1 for September 2026 (Monthly filers)",   type: "gst" },
+      { date: "20 Oct", task: "GSTR-3B for September 2026",                   type: "gst" },
+      { date: "30 Oct", task: "ROC Annual Filing — AOC-4 (Within 30d of AGM)", type: "roc" },
+      { date: "31 Oct", task: "ITR Filing — Audit cases and Corporates",      type: "tax" },
+      { date: "31 Oct", task: "TDS Return — Q2 FY 2026-27",                   type: "tds" },
     ],
   },
   {
-    id: "dec", month: "December 2025",
+    id: "dec", month: "December 2026",
     deadlines: [
-      { date: "7 Dec",  task: "TDS Deposit for November 2025",                type: "tds" },
-      { date: "11 Dec", task: "GSTR-1 for November 2025 (Monthly filers)",    type: "gst" },
       { date: "15 Dec", task: "Advance Tax — 3rd Instalment (75% cumulative)", type: "tax" },
-      { date: "20 Dec", task: "GSTR-3B for November 2025",                    type: "gst" },
-      { date: "31 Dec", task: "Belated/Revised ITR — Last Date (FY 2024-25)", type: "tax" },
-      { date: "31 Dec", task: "ROC Annual Filing — Form AOC-4 & MGT-7",      type: "roc" },
+      { date: "31 Dec", task: "Belated/Revised ITR (FY 2025-26)",             type: "tax" },
+      { date: "31 Dec", task: "GSTR-9 & 9C — Annual Return (FY 2025-26)",    type: "gst" },
     ],
   },
   {
-    id: "mar", month: "March 2026",
+    id: "mar", month: "March 2027",
     deadlines: [
-      { date: "7 Mar",  task: "TDS Deposit for February 2026",                type: "tds" },
+      { date: "7 Mar",  task: "TDS Deposit for February 2027",                type: "tds" },
       { date: "15 Mar", task: "Advance Tax — 4th Instalment (100%)",          type: "tax" },
-      { date: "20 Mar", task: "GSTR-3B for February 2026",                    type: "gst" },
-      { date: "31 Mar", task: "Financial year-end — All accounts reconciled", type: "tax" },
-      { date: "31 Mar", task: "PAN-Aadhaar Linking Deadline (if applicable)", type: "tax" },
+      { date: "31 Mar", task: "Financial year-end — All books reconciled",    type: "tax" },
     ],
   },
 ];
@@ -133,13 +126,14 @@ export default function ComplianceCalendar() {
             <span aria-current="page" className="text-[#1C201E] font-medium">Compliance Calendar</span>
           </nav>
           <span className="block text-[11px] uppercase tracking-[0.14em] font-semibold text-[#1A4D2E] mb-3 font-body">
-            FY 2025-26 Due Dates
+            FY 2026-27 DUE DATES
           </span>
           <h1 className="font-heading font-semibold text-[2.25rem] sm:text-[2.75rem] tracking-tight leading-[1.1] text-[#1C201E] mb-3 max-w-2xl">
-            Stay ahead of every compliance deadline.
+            Statutory Deadlines for <span className="text-[#1A4D2E]">FY 2026-27</span>.
           </h1>
           <p className="font-body text-base text-[#4E5A54] leading-relaxed max-w-xl">
-            Key GST, TDS, income tax, and ROC deadlines for FY 2025-26. Bookmark this page and check it regularly.
+            Important dates for Income Tax, GST, TDS, and ROC filings in accordance with the 
+            <strong> Income Tax Act, 2025</strong> and latest regulatory framework.
           </p>
         </div>
       </section>
@@ -248,7 +242,7 @@ export default function ComplianceCalendar() {
           </div>
           <div className="bg-[#F2F5F3] border border-[#E8EDE9] rounded-xl p-6">
             <h3 className="font-heading font-medium text-[#1C201E] text-sm mb-2">
-              Let VNAV Associates track this for you.
+              Let VNAV & Associates track this for you.
             </h3>
             <p className="font-body text-sm text-[#4E5A54] mb-4 leading-relaxed">
               We manage your full compliance calendar — GST, TDS, ITR, and ROC — so you never need to track due dates yourself.

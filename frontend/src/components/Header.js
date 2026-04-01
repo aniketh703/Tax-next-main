@@ -1,53 +1,21 @@
 import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import {
-  Menu, X, ChevronDown, Phone, ArrowRight,
-  FileText, TrendingUp, Building2, Globe,
+import { 
+  Menu, X, Phone, ChevronDown, 
+  ArrowRight, Globe, Shield, Landmark, 
+  Briefcase, Scale, BarChart3,
 } from "lucide-react";
 
 /* ─── Data ─────────────────────────────────────────────────── */
 
-const servicesMenu = [
-  {
-    category: "GST Services",
-    icon: FileText,
-    items: [
-      { name: "GST Registration",     href: "/services#gst" },
-      { name: "Monthly Returns",      href: "/services#gst" },
-      { name: "Annual Return",        href: "/services#gst" },
-      { name: "GST Notice Handling",  href: "/services#gst" },
-    ],
-  },
-  {
-    category: "Income Tax",
-    icon: TrendingUp,
-    items: [
-      { name: "Salaried ITR",         href: "/services#individual" },
-      { name: "Freelancer ITR",       href: "/services#individual" },
-      { name: "NRI Tax Return",       href: "/services#individual" },
-      { name: "Capital Gains",        href: "/services#individual" },
-    ],
-  },
-  {
-    category: "Business & Compliance",
-    icon: Building2,
-    items: [
-      { name: "Company Registration", href: "/services#business" },
-      { name: "LLP Formation",        href: "/services#business" },
-      { name: "ROC Annual Filing",    href: "/services#business" },
-      { name: "Bookkeeping",          href: "/services#business" },
-    ],
-  },
-  {
-    category: "Specialised",
-    icon: Globe,
-    items: [
-      { name: "NRI Taxation",         href: "/services#individual" },
-      { name: "FEMA Compliance",      href: "/services#individual" },
-      { name: "Virtual CFO",          href: "/services#vcfo" },
-      { name: "Tax Audit",            href: "/services#business" },
-    ],
-  },
+const SERVICE_CATEGORIES = [
+  { id: "audit", label: "Audit & Assurance", desc: "Statutory & Internal Audits", icon: BarChart3 },
+  { id: "direct", label: "Direct Taxation", desc: "Income Tax & Representation", icon: Shield },
+  { id: "indirect", label: "Indirect Tax (GST)", desc: "Registration & Compliance", icon: Landmark },
+  { id: "business", label: "Business Advisory", desc: "Planning & Structuring", icon: Briefcase },
+  { id: "regulatory", label: "Regulatory Services", desc: "ROC & Incorporation", icon: Scale },
+  { id: "nri", label: "NRI Taxation", desc: "Cross-border Compliance", icon: Globe },
 ];
 
 const navLinks = [
@@ -68,13 +36,22 @@ export default function Header() {
   const [servicesOpen,      setServicesOpen]      = useState(false);
   const [mobileServicesOpen,setMobileServicesOpen]= useState(false);
   const [scrolled,          setScrolled]          = useState(false);
+  const [scrollProgress,    setScrollProgress]    = useState(0);
 
   const megaMenuRef = useRef(null);
   const location    = useLocation();
 
-  /* scroll shadow */
+  /* scroll shadow & progress */
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 4);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 4);
+      
+      // Calculate scroll progress %
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      setScrollProgress(scrolled);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -122,6 +99,12 @@ export default function Header() {
           transition: "box-shadow 0.2s ease",
         }}
       >
+        {/* Scroll Progress Bar */}
+        <div 
+          className="fixed top-0 left-0 h-[2px] bg-[#4A7C59] z-[60] transition-all duration-100 ease-out" 
+          style={{ width: `${scrollProgress}%` }}
+        />
+
         {/* Green accent line — top */}
         <div className="h-[3px] bg-[#1A4D2E]" />
 
@@ -134,11 +117,11 @@ export default function Header() {
               data-testid="header-logo"
               className="flex flex-col leading-none shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1A4D2E] focus-visible:ring-offset-2 rounded-sm"
             >
-              <span className="font-heading font-bold text-[1.1875rem] text-[#1A4D2E] tracking-tight leading-none">
-                TaxNext<span className="text-[#6B7B72] font-normal">.in</span>
+              <span className="font-heading font-bold text-[1.25rem] text-[#1A4D2E] tracking-tight leading-none">
+                TaxNext.in
               </span>
-              <span className="font-body text-[8.5px] tracking-[0.07em] text-[#9BABA2] mt-[3px] uppercase font-medium">
-                by VNAV Associates · Chartered Accountants
+              <span className="font-body text-[9px] tracking-[0.07em] text-[#6B7B72] mt-[3px] uppercase font-medium">
+                VNAV & Associates · Chartered Accountants
               </span>
             </Link>
 
@@ -189,78 +172,75 @@ export default function Header() {
                     </button>
 
                     {/* Mega Menu */}
-                    {servicesOpen && (
-                      <div
-                        id="services-mega-menu"
-                        data-testid="services-mega-menu"
-                        className="absolute top-full left-1/2 -translate-x-1/2 z-50"
-                        style={{ marginTop: "0px" }}
-                        role="region"
-                        aria-label="Services menu"
-                      >
-                        {/* invisible bridge so hover doesn't break */}
-                        <div className="h-[6px]" />
-                        <div
-                          className="w-[760px] bg-white rounded-xl border border-[#E0E6E2] p-7"
-                          style={{
-                            boxShadow: "0 20px 48px -8px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04)",
-                          }}
+                    <AnimatePresence>
+                      {servicesOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                          transition={{ duration: 0.2, ease: "easeOut" }}
+                          id="services-mega-menu"
+                          data-testid="services-mega-menu"
+                          className="absolute top-full left-1/2 -translate-x-1/2 z-50"
+                          style={{ marginTop: "0px" }}
+                          role="region"
+                          aria-label="Services menu"
                         >
-                          <div className="grid grid-cols-4 gap-7">
-                            {servicesMenu.map((group) => {
-                              const Icon = group.icon;
-                              return (
-                                <div key={group.category}>
-                                  <div className="flex items-center gap-2 mb-3 pb-2.5 border-b border-[#F0F4F1]">
-                                    <div className="w-5 h-5 rounded bg-[#E8EEE9] flex items-center justify-center shrink-0">
-                                      <Icon size={11} strokeWidth={1.5} className="text-[#1A4D2E]" />
+                          {/* invisible bridge so hover doesn't break */}
+                          <div className="h-[6px]" />
+                          <div
+                            className="w-[760px] bg-white rounded-xl border border-[#E0E6E2] p-7"
+                            style={{
+                              boxShadow: "0 20px 48px -8px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04)",
+                            }}
+                          >
+                            <div className="grid grid-cols-2 gap-2">
+                              {SERVICE_CATEGORIES.map((cat) => {
+                                const Icon = cat.icon;
+                                return (
+                                  <Link
+                                    key={cat.id}
+                                    to="/services"
+                                    className="group flex items-start gap-4 p-4 rounded-xl hover:bg-[#F2F5F3] transition-all duration-200"
+                                    onClick={() => setServicesOpen(false)}
+                                  >
+                                    <div className="w-10 h-10 rounded-lg bg-white border border-[#E8EDE9] flex items-center justify-center shrink-0 group-hover:border-[#1A4D2E]/20 group-hover:shadow-sm transition-all">
+                                      <Icon size={18} strokeWidth={1.5} className="text-[#1A4D2E]" />
                                     </div>
-                                    <span className="text-[9.5px] font-bold uppercase tracking-[0.12em] text-[#1A4D2E] font-body">
-                                      {group.category}
-                                    </span>
-                                  </div>
-                                  <ul className="space-y-2">
-                                    {group.items.map((item) => (
-                                      <li key={item.name}>
-                                        <Link
-                                          to={item.href}
-                                          className="block text-[0.8rem] text-[#4E5A54] hover:text-[#1A4D2E] transition-colors font-body leading-snug py-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1A4D2E] focus-visible:ring-offset-1 rounded"
-                                          onClick={() => setServicesOpen(false)}
-                                        >
-                                          {item.name}
-                                        </Link>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              );
-                            })}
-                          </div>
+                                    <div>
+                                      <p className="font-heading font-medium text-[0.875rem] text-[#1C201E] group-hover:text-[#1A4D2E] transition-colors">{cat.label}</p>
+                                      <p className="font-body text-[0.75rem] text-[#4E5A54] mt-0.5">{cat.desc}</p>
+                                    </div>
+                                  </Link>
+                                );
+                              })}
+                            </div>
 
-                          {/* Footer row */}
-                          <div className="mt-6 pt-4 border-t border-[#F0F4F1] flex items-center justify-between">
-                            <p className="text-[0.8125rem] text-[#6B7B72] font-body">
-                              Not sure what you need?{" "}
+                            {/* Footer row */}
+                            <div className="mt-6 pt-4 border-t border-[#F0F4F1] flex items-center justify-between">
+                              <p className="text-[0.8125rem] text-[#6B7B72] font-body">
+                                Not sure what you need?{" "}
+                                <Link
+                                  to="/contact"
+                                  className="text-[#1A4D2E] font-medium hover:underline underline-offset-2"
+                                  onClick={() => setServicesOpen(false)}
+                                >
+                                  Contact the firm
+                                </Link>
+                              </p>
                               <Link
-                                to="/contact"
-                                className="text-[#1A4D2E] font-medium hover:underline underline-offset-2"
+                                to="/services"
+                                className="inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-[#1A4D2E] hover:text-[#133b23] font-body"
                                 onClick={() => setServicesOpen(false)}
                               >
-                                Ask CA. Prasad
+                                All services
+                                <ArrowRight size={13} strokeWidth={2} />
                               </Link>
-                            </p>
-                            <Link
-                              to="/services"
-                              className="inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-[#1A4D2E] hover:text-[#133b23] font-body"
-                              onClick={() => setServicesOpen(false)}
-                            >
-                              All services
-                              <ArrowRight size={13} strokeWidth={2} />
-                            </Link>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    )}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 ) : (
                   /* Regular nav link */
@@ -289,19 +269,19 @@ export default function Header() {
             {/* ── Desktop CTA ───────────────────────────────── */}
             <div className="hidden xl:flex items-center gap-3 shrink-0">
               <a
-                href="tel:+910000000000"
+                href="tel:+919440428417"
                 data-testid="header-call-btn"
                 className="flex items-center gap-1.5 text-[0.8rem] font-medium text-[#4E5A54] hover:text-[#1A4D2E] font-body transition-colors"
               >
                 <Phone size={13} strokeWidth={1.5} className="text-[#1A4D2E]" />
-                +91 00000 00000
+                +91 94404 28417
               </a>
               <Link
                 to="/contact"
                 data-testid="header-cta-btn"
                 className="bg-[#1A4D2E] text-white rounded-lg px-4 py-2.5 text-[0.8125rem] font-semibold font-body hover:bg-[#133b23] transition-colors shadow-sm focus-visible:ring-2 focus-visible:ring-[#1A4D2E] focus-visible:ring-offset-2 tracking-wide"
               >
-                Book Consultation
+                Contact Us
               </Link>
             </div>
 
@@ -357,10 +337,10 @@ export default function Header() {
             onClick={() => setMobileOpen(false)}
           >
             <span className="font-heading font-bold text-[1.0625rem] text-[#1A4D2E] leading-none">
-              TaxNext<span className="text-[#6B7B72] font-normal">.in</span>
+              VNAV & ASSOCIATES
             </span>
             <span className="font-body text-[7.5px] tracking-[0.07em] text-[#9BABA2] mt-[3px] uppercase font-medium">
-              by VNAV Associates
+              Chartered Accountants
             </span>
           </Link>
           <button
@@ -447,11 +427,11 @@ export default function Header() {
         {/* Drawer footer: CTA */}
         <div className="px-4 py-5 border-t border-[#E8EDE9] space-y-2.5 shrink-0">
           <a
-            href="tel:+910000000000"
+            href="tel:+919440428417"
             className="flex items-center gap-2.5 px-3.5 py-3 rounded-lg text-[0.875rem] font-medium text-[#4E5A54] hover:bg-[#F4F7F5] font-body transition-colors"
           >
             <Phone size={14} strokeWidth={1.5} className="text-[#1A4D2E]" />
-            +91 00000 00000
+            +91 94404 28417
           </a>
           <Link
             to="/contact"
@@ -459,7 +439,7 @@ export default function Header() {
             className="flex items-center justify-center gap-2 bg-[#1A4D2E] text-white rounded-lg px-5 py-3 text-[0.875rem] font-semibold font-body hover:bg-[#133b23] transition-colors"
             onClick={() => setMobileOpen(false)}
           >
-            Book Free Consultation
+            Contact Us
             <ArrowRight size={14} strokeWidth={2} />
           </Link>
         </div>

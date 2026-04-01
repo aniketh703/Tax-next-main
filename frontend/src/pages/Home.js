@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   ArrowRight, CheckCircle, Star, Phone, ChevronRight, ChevronDown,
   Briefcase, Globe, Building2, FileText, Shield, Users, Calendar,
@@ -7,6 +8,7 @@ import {
   Rocket, UserCheck, Clock, MessageSquare
 } from "lucide-react";
 import SEO from "../components/SEO";
+import Highlighter from "../components/ui/Highlighter";
 
 const LOCAL_BUSINESS_SCHEMA = {
   "@context": "https://schema.org",
@@ -15,11 +17,11 @@ const LOCAL_BUSINESS_SCHEMA = {
   "alternateName": "TaxNext.in",
   "description": "Chartered Accountants specialising in income tax filing, GST compliance, TDS, ROC filings, and business advisory. Led personally by CA. V.V.N. Prasad Gupta.",
   "url": "https://taxnext.in",
-  "telephone": "+91-00000-00000",
+  "telephone": "+91-94404 28417",
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Hyderabad",
-    "addressRegion": "Telangana",
+    "addressLocality": "Kurnool",
+    "addressRegion": "Andhra Pradesh",
     "addressCountry": "IN"
   },
   "founder": {
@@ -33,98 +35,96 @@ const LOCAL_BUSINESS_SCHEMA = {
 
 /* ─── Assets ───────────────────────────────────────────────── */
 const HERO_IMAGE =
-  "https://static.prod-images.emergentagent.com/jobs/aebe5bae-79f1-412a-a57c-d6d295c09f4e/images/4e97e677ac6def5bdb6d5f66276e1d2747ee2a823434c90d434f20f03a3eef17.png";
-const FOUNDER_IMAGE =
-  "https://static.prod-images.emergentagent.com/jobs/aebe5bae-79f1-412a-a57c-d6d295c09f4e/images/aaef25480ca9796d22d26e78854d76269059d727b7df3c2906a383a97297df42.png";
+  "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?crop=entropy&cs=srgb&fm=jpg&w=1200&q=75";
+const FOUNDER_IMAGE = process.env.PUBLIC_URL + "/founder.jpeg";
 const ART_1 =
-  "https://images.unsplash.com/photo-1758691736764-2a88e313b1f2?crop=entropy&cs=srgb&fm=jpg&w=600&q=75";
+  "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?crop=entropy&cs=srgb&fm=jpg&w=600&q=75";
 const ART_2 =
-  "https://images.unsplash.com/photo-1548950308-69fac3b90a45?crop=entropy&cs=srgb&fm=jpg&w=600&q=75";
+  "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?crop=entropy&cs=srgb&fm=jpg&w=600&q=75";
 const ART_3 =
-  "https://static.prod-images.emergentagent.com/jobs/aebe5bae-79f1-412a-a57c-d6d295c09f4e/images/f85ba65ea96c90d5ea843db949e4dbd2a9d3061c733ef41871a9ae66e9dc87e5.png";
+  "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?crop=entropy&cs=srgb&fm=jpg&w=600&q=75";
 
-/* ─── Data ──────────────────────────────────────────────────── */
 const stats = [
-  { value: "500+", label: "Client Engagements", sub: "Salaried, NRI, business, and startup" },
-  { value: "10+", label: "Years in Practice", sub: "Active CA practice since 2014" },
-  { value: "ICAI", label: "Member", sub: "Institute of Chartered Accountants of India" },
-  { value: "0", label: "Late Filings", sub: "Every return submitted before the due date" },
+  { value: "Audit", label: "Statutory & Tax", sub: "Comprehensive assurance services" },
+  { value: "Tax", label: "Direct & Indirect", sub: "Planning and compliance" },
+  { value: "FEMA", label: "NRI Services", sub: "DTAA and cross-border advisory" },
+  { value: "ROCs", label: "Corporate Law", sub: "Company and LLP compliances" },
 ];
 
 const pathways = [
   {
     icon: Briefcase,
-    label: "Salaried Employees",
-    desc: "ITR filing, Form 16 review, HRA claims, and investment declarations — filed accurately, every year.",
-    href: "/services#itr",
+    label: "Individuals & Employees",
+    desc: "Income tax return filing, HRA review, and deduction guidance for salaried individuals.",
+    href: "/services",
   },
   {
     icon: Globe,
     label: "NRIs & PIOs",
-    desc: "India income declarations, FEMA compliance, NRO/NRE account guidance, and DTAA benefits.",
-    href: "/services#nri",
+    desc: "India income declarations, FEMA compliance, NRO/NRE account guidance, and DTAA advisory.",
+    href: "/services",
   },
   {
     icon: Building2,
     label: "Business Owners",
-    desc: "GST returns, bookkeeping, P&L, and annual compliance for established businesses.",
-    href: "/services#gst",
-  },
-  {
-    icon: Rocket,
-    label: "Startup Founders",
-    desc: "Incorporation, Startup India registration, ESOP advisory, and ongoing compliance packages.",
-    href: "/services#startup",
+    desc: "GST registration, return filing, bookkeeping, and annual statutory compliance for businesses.",
+    href: "/services",
   },
   {
     icon: FileText,
-    label: "Freelancers & Consultants",
-    desc: "Business income ITR, advance tax planning, and applicable deduction claims.",
-    href: "/services#itr",
+    label: "Audit & Assurance",
+    desc: "Statutory audits, internal audits, tax audits, and financial reviews conducted professionally.",
+    href: "/services",
+  },
+  {
+    icon: Shield,
+    label: "Business Advisory",
+    desc: "Financial planning, structuring, and compliance advisory for established and growing enterprises.",
+    href: "/services",
   },
   {
     icon: AlertCircle,
-    label: "Tax Notice Response",
-    desc: "Income tax or GST notice received. We assess, respond formally, and represent you before the department if required.",
-    href: "/contact",
+    label: "Regulatory Services",
+    desc: "Company incorporation (Pvt Ltd / LLP), ROC filings, and certification services.",
+    href: "/services",
     highlight: true,
   },
 ];
 
 const differentiators = [
   {
-    title: "CA-led, without exception",
-    desc: "Every filing is reviewed and signed off by CA. Prasad. Not a software output. Not a junior review.",
+    title: "Understanding client requirements",
+    desc: "We thoroughly assess your professional requirements before commencing any engagement.",
   },
   {
-    title: "Continuity across years",
-    desc: "We retain context from prior engagements. No re-explaining your situation at the start of each filing season.",
+    title: "Applying professional judgement",
+    desc: "We apply qualified professional judgement to each situation, consistent with applicable standards.",
   },
   {
-    title: "Deadlines tracked, not missed",
-    desc: "We monitor due dates and inform you in advance. You should not need to track filing seasons yourself.",
+    title: "Ensuring regulatory compliance",
+    desc: "All services are delivered in adherence to applicable laws, ICAI guidelines, and professional standards.",
   },
   {
-    title: "Straightforward fee structure",
-    desc: "Fees are quoted in writing before any work begins. There are no mid-engagement revisions or unexpected charges.",
+    title: "Delivering services in a timely manner",
+    desc: "Engagements are executed with diligence and completed within agreed timelines.",
   },
 ];
 
 const steps = [
   {
     num: "01",
-    title: "Initial consultation",
-    desc: "A brief introductory call to understand your requirements. We confirm what we can do and what it will cost — before any engagement begins. No paperwork at this stage.",
+    title: "Initial Review",
+    desc: "A structured assessment to understand your professional requirements and confirm the scope of engagement.",
   },
   {
     num: "02",
-    title: "Prepared and reviewed together",
-    desc: "CA. Prasad reviews your documents, identifies applicable deductions and tax efficiencies, and prepares accurate filings. Nothing is submitted without your review and written agreement.",
+    title: "Document Preparation",
+    desc: "A thorough review of documents is conducted to prepare accurate filings. Drafts are shared for your review and confirmation prior to submission.",
   },
   {
     num: "03",
-    title: "Filed correctly. On time.",
-    desc: "All filings are submitted before the statutory due date and confirmed in writing. Any subsequent correspondence from the department is handled by the same CA who filed.",
+    title: "Statutory Filing",
+    desc: "All filings are submitted in accordance with statutory timelines. Professional support is provided for subsequent regulatory correspondence as per the engagement terms.",
   },
 ];
 
@@ -168,51 +168,48 @@ const articles = [
 const testimonials = [
   {
     quote:
-      "I was filing my own ITR for years and realised I had missed several deductions. CA. Prasad reviewed three years of returns and helped me claim what was rightfully mine. Professional, thorough, and easy to communicate with.",
-    name: "Ankit S.",
-    role: "Software Engineer, Bengaluru",
-    stars: 5,
+      "Reviewing historical tax filings for salaried professionals to ensure all eligible deductions are accurately claimed and documented in accordance with the Income Tax Act.",
+    name: "Salaried Employees",
+    role: "ITR & Deductions",
   },
   {
     quote:
-      "As an NRI with property income in India, the compliance obligations are genuinely complex. VNAV Associates handles everything — I no longer worry about FEMA deadlines or TDS implications.",
-    name: "Deepa R.",
-    role: "NRI Client, UAE",
-    stars: 5,
+      "Assisting Non-Resident Indians with cross-border taxation, FEMA compliance, and repatriation procedures while ensuring adherence to applicable Double Taxation Avoidance Agreements (DTAA).",
+    name: "NRI & PIO",
+    role: "Cross-Border & FEMA",
   },
   {
     quote:
-      "We incorporated our startup and VNAV Associates has been our compliance partner since day one. Every deadline is met without us needing to follow up. That kind of reliability is hard to find.",
-    name: "Rohan M.",
-    role: "Co-Founder, Tech Startup",
-    stars: 5,
+      "Comprehensive compliance partnerships for startups and growing businesses, covering monthly GST, TDS, bookkeeping, and annual ROC filings in a structured manner.",
+    name: "Business Entities",
+    role: "Corporate Compliance",
   },
 ];
 
 const faqs = [
   {
     q: "How do I get started?",
-    a: "Contact us by phone, WhatsApp, or the enquiry form. We will arrange a brief call to understand your situation and confirm whether we are the right fit. There is no obligation at the consultation stage.",
+    a: "Contact information for our offices is available on the Contact page. We will arrange a professional assessment of your requirements to confirm the scope of work. Engagement is initiated only after formal agreement.",
   },
   {
     q: "Do I need to visit your office?",
-    a: "No. All services are completed remotely via phone, WhatsApp, and email. Document exchange is handled digitally and securely. A number of our clients, including those based abroad, have never visited the office.",
+    a: "Communication can be handled via phone, digital channels, or in person at our offices in Kurnool or Chennai, as per the requirements of the engagement.",
   },
   {
-    q: "Will I work directly with CA. Prasad?",
-    a: "Yes. CA. Prasad personally reviews and oversees every client engagement. Work is not delegated to junior staff or processed through automated systems.",
+    q: "Will I work directly with the partners?",
+    a: "Yes. Every engagement is personally overseen and reviewed by the firm's partners, ensuring high professional standards and compliance.",
   },
   {
-    q: "How quickly can my return be filed?",
-    a: "For straightforward matters with complete documentation, filings are typically completed within 2–3 working days. For more involved cases, we confirm the timeline before beginning.",
+    q: "How quickly can filings be completed?",
+    a: "Timelines for professional services are determined based on the complexity of the matter and availability of documentation, and are agreed upon at the commencement of the engagement.",
   },
   {
-    q: "What happens if I receive a notice after filing?",
-    a: "If the notice relates to work handled by VNAV Associates, we assess and respond on your behalf as part of the engagement — at no additional charge.",
+    q: "What happens if I receive a regulatory notice?",
+    a: "The firm provide representation and advisory services for regulatory matters and notices as per the terms of the specific professional engagement.",
   },
   {
-    q: "How are fees structured?",
-    a: "Fees are based on the scope of the work and quoted in writing after the initial consultation. Charges are fixed and agreed in advance. There are no hidden fees or mid-engagement revisions.",
+    q: "How are professional fees structured?",
+    a: "Fees are based on the nature and scope of the professional work and are communicated after an initial assessment. All fees are in accordance with the guidelines of the ICAI.",
   },
 ];
 
@@ -247,66 +244,102 @@ function FAQItem({ q, a, open, onToggle }) {
   );
 }
 
+/* ─── Motion Variants ────────────────────────────────────────── */
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.6, ease: [0.215, 0.61, 0.355, 1] }
+};
+
+const staggerContainer = {
+  initial: {},
+  whileInView: { transition: { staggerChildren: 0.1 } },
+  viewport: { once: true }
+};
+
 /* ─── Home Page ─────────────────────────────────────────────── */
 export default function Home() {
   const [openFaq, setOpenFaq] = useState(null);
 
   return (
     <>
+      <SEO 
+        title="VNAV Associates | Chartered Accountants & Tax Consultants"
+        description="Professional CA services in Audit, Taxation, GST, and Business Advisory. Led by CA. V.V.N. Prasad Gupta."
+        schema={LOCAL_BUSINESS_SCHEMA}
+      />
+
       {/* ── 1. HERO ──────────────────────────────────────────── */}
       <section data-testid="hero-section" className="bg-[#FBFBF9] overflow-hidden">
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-14 lg:py-24">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
             {/* Left: Copy */}
-            <div>
-              <span className="block text-[10.5px] uppercase tracking-[0.16em] font-semibold text-[#1A4D2E] mb-6 font-body">
-                VNAV Associates · Chartered Accountants · Hyderabad
-              </span>
+            <motion.div
+              initial="initial"
+              whileInView="whileInView"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              <motion.span 
+                variants={fadeInUp}
+                className="block text-[10.5px] uppercase tracking-[0.16em] font-semibold text-[#1A4D2E] mb-6 font-body"
+              >
+                VNAV & Associates · Chartered Accountants
+              </motion.span>
 
-              <h1 className="font-heading font-semibold text-4xl sm:text-5xl lg:text-[3.5rem] tracking-tight leading-[1.1] text-[#1C201E] mb-6">
-                Your taxes.<br />
-                <span className="text-[#1A4D2E]">Handled properly.</span>
-              </h1>
+              <motion.h1 
+                variants={fadeInUp}
+                className="font-heading font-semibold text-4xl sm:text-5xl lg:text-[3.5rem] tracking-tight leading-[1.1] text-[#1C201E] mb-6"
+              >
+                Professional <Highlighter>Standards.</Highlighter><br />
+                <span className="text-[#1A4D2E]">Systematic Approach.<br/>Regulatory Adherence.</span>
+              </motion.h1>
 
-              <p className="font-body text-[1.0625rem] text-[#4E5A54] leading-[1.8] mb-8 max-w-lg">
-                CA. <strong className="text-[#1C201E] font-medium">V.V.N.Prasad. Gupta</strong> of
-                VNAV Associates personally oversees all ITR, GST, and business compliance filings.
-                Ten years in active CA practice. Every return reviewed and approved before submission.
-              </p>
+              <motion.p 
+                variants={fadeInUp}
+                className="font-body text-[1.0625rem] text-[#4E5A54] leading-[1.8] mb-8 max-w-lg"
+              >
+                VNAV & Associates is a firm of <span className="text-emphasize">Chartered Accountants</span> providing professional services in audit, taxation, and advisory, with a focus on compliance, accuracy, and professional standards.
+              </motion.p>
 
-              <div className="flex flex-col sm:flex-row gap-3 mb-9">
+              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 mb-9">
                 <Link
                   to="/contact"
-                  data-testid="hero-cta-primary"
                   className="inline-flex items-center justify-center gap-2 bg-[#1A4D2E] text-white rounded-lg px-7 py-3.5 font-semibold font-body hover:bg-[#133b23] transition-colors shadow-sm text-[0.9375rem] focus-visible:ring-2 focus-visible:ring-[#1A4D2E] focus-visible:ring-offset-2 tracking-wide"
                 >
-                  Book a Consultation
+                  Contact Information
                   <ArrowRight size={15} strokeWidth={1.5} />
                 </Link>
                 <Link
                   to="/services"
-                  data-testid="hero-cta-secondary"
                   className="inline-flex items-center justify-center gap-2 bg-transparent text-[#1C201E] border border-[#D4DAD6] rounded-lg px-7 py-3.5 font-medium font-body hover:border-[#1A4D2E] hover:text-[#1A4D2E] transition-colors text-[0.9375rem]"
                 >
-                  See Our Services
+                  Areas of Practice
                 </Link>
-              </div>
+              </motion.div>
 
               {/* Trust microcopy */}
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-2.5 pt-1">
-                {["ICAI Registered", "Every return reviewed by CA. Prasad", "500+ client engagements"].map((t) => (
+              <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-x-6 gap-y-2.5 pt-1">
+                {["Audit & Assurance", "Direct Taxation", "Indirect Tax (GST)"].map((t) => (
                   <span key={t} className="flex items-center gap-1.5 text-[0.8125rem] text-[#4E5A54] font-body">
                     <CheckCircle size={13} strokeWidth={1.5} className="text-[#1A4D2E] shrink-0" />
                     {t}
                   </span>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Right: Image */}
-            <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden border border-[#E8EDE9]" style={{ boxShadow: "0 8px 32px -8px rgba(0,0,0,0.1)" }}>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="relative"
+            >
+              <div className="relative rounded-2xl overflow-hidden border border-[#E8EDE9] shadow-2xl" style={{ boxShadow: "0 8px 32px -8px rgba(0,0,0,0.1)" }}>
                 <img
                   src={HERO_IMAGE}
                   alt="VNAV Associates — Professional tax advisory"
@@ -314,451 +347,187 @@ export default function Home() {
                   loading="eager"
                 />
                 {/* Floating badge */}
-                <div className="absolute bottom-5 left-5 bg-white/97 backdrop-blur-sm rounded-xl border border-[#E8EDE9] px-5 py-4" style={{ boxShadow: "0 4px 16px -4px rgba(0,0,0,0.1)" }}>
-                  <p className="font-heading font-semibold text-[1.75rem] text-[#1A4D2E] leading-none tracking-tight">500+</p>
-                  <p className="font-body text-[0.8125rem] text-[#4E5A54] mt-1">Client engagements since 2014</p>
+                <div className="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-md rounded-xl border border-[#E8EDE9] px-6 py-5 shadow-lg">
+                  <p className="font-heading font-semibold text-[#1C201E] text-lg leading-tight">CA. V.V.N.Prasad. Gupta</p>
+                  <p className="font-body text-[0.8125rem] text-[#4E5A54] mt-1 italic opacity-80">Founder, VNAV & Associates</p>
+                  <div className="mt-4 opacity-70 grayscale hover:grayscale-0 transition-all duration-500 flex items-center justify-between">
+                    <span className="font-serif italic text-2xl text-[#1A4D2E] select-none pointer-events-none" style={{ fontFamily: "'Playfair Display', serif" }}>
+                      VVN Prasad Gupta
+                    </span>
+                    <div className="flex gap-1.5">
+                       {[1,2,3,4,5].map(i => <Star key={i} size={10} fill="#1A4D2E" className="text-[#1A4D2E]" />)}
+                    </div>
+                  </div>
                 </div>
               </div>
-              {/* Dot grid accent */}
-              <div
-                className="absolute -top-4 -right-4 w-24 h-24 opacity-[0.12] pointer-events-none"
-                style={{ backgroundImage: "radial-gradient(circle, #1A4D2E 1.5px, transparent 1.5px)", backgroundSize: "10px 10px" }}
-              />
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* ── 2. TRUST STRIP ───────────────────────────────────── */}
       <section data-testid="trust-bar" className="bg-[#1A4D2E]">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-10 lg:py-12">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:divide-x lg:divide-white/10">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-10 lg:py-16">
+          <motion.div 
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:divide-x lg:divide-white/10"
+          >
             {stats.map((s) => (
-              <div key={s.label} data-testid={`stat-${s.label.toLowerCase().replace(/\s+/g, "-")}`} className="lg:px-8 first:lg:pl-0 last:lg:pr-0">
+              <motion.div
+                key={s.label}
+                variants={fadeInUp}
+                className="lg:px-8 first:lg:pl-0 last:lg:pr-0"
+              >
                 <p className="font-heading font-semibold text-[2.75rem] lg:text-[3rem] text-white tracking-tight leading-none">
                   {s.value}
                 </p>
-                <p className="font-heading font-medium text-white/70 text-[0.8125rem] mt-2">{s.label}</p>
+                <p className="font-heading font-medium text-white/70 text-[0.8125rem] mt-2 uppercase tracking-wider">{s.label}</p>
                 <p className="font-body text-[0.75rem] text-white/45 mt-0.5 leading-snug">{s.sub}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ── 3. SERVICE PATHWAYS ──────────────────────────────── */}
-      <section data-testid="pathways-section" className="bg-[#FBFBF9]">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-16 lg:py-24">
-          <div className="max-w-2xl mb-12 lg:mb-16">
+      <section data-testid="pathways-section" className="bg-[#FBFBF9] py-24 lg:py-32">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mb-12 lg:mb-20">
             <span className="block text-[10.5px] uppercase tracking-[0.16em] font-semibold text-[#1A4D2E] mb-4 font-body">
-              Who We Work With
+              Areas of Experience
             </span>
-            <h2 className="font-heading font-medium text-[1.875rem] sm:text-[2.25rem] text-[#1C201E] tracking-tight leading-snug mb-3">
+            <h2 className="font-heading font-medium text-[1.875rem] sm:text-[2.25rem] text-[#1C201E] tracking-tight leading-snug mb-4">
               Services for individuals, NRIs, and businesses of all sizes.
             </h2>
             <p className="font-body text-base text-[#4E5A54] leading-relaxed">
-              Each engagement begins the same way — a direct conversation with CA. Prasad to
-              understand your requirements and confirm the scope of work.
+              Each engagement begins with a structured review of professional requirements to confirm the scope of work.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <motion.div 
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          >
             {pathways.map((p) => {
               const Icon = p.icon;
               return (
-                <Link
-                  key={p.label}
-                  to={p.href}
-                  data-testid={`pathway-${p.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
-                  className={`group rounded-xl border p-6 transition-all duration-200 hover:shadow-md ${
-                    p.highlight
-                      ? "bg-[#1A4D2E]/[0.04] border-[#1A4D2E]/25 hover:border-[#1A4D2E]/50"
-                      : "bg-white border-[#E8EDE9] hover:border-[#1A4D2E]/30"
-                  }`}
-                >
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-4 transition-colors ${
-                    p.highlight ? "bg-[#1A4D2E]/10 group-hover:bg-[#1A4D2E]" : "bg-[#F2F5F3] group-hover:bg-[#1A4D2E]"
-                  }`}>
-                    <Icon
-                      size={18}
-                      strokeWidth={1.5}
-                      className={`transition-colors ${p.highlight ? "text-[#1A4D2E] group-hover:text-white" : "text-[#1A4D2E] group-hover:text-white"}`}
-                    />
-                  </div>
-                  <h3 className={`font-heading font-medium text-base mb-1.5 group-hover:text-[#1A4D2E] transition-colors ${
-                    p.highlight ? "text-[#1A4D2E]" : "text-[#1C201E]"
-                  }`}>
-                    {p.label}
-                  </h3>
-                  <p className="font-body text-sm text-[#4E5A54] leading-relaxed mb-4">{p.desc}</p>
-                  <span className="inline-flex items-center gap-1 text-sm font-medium text-[#1A4D2E] font-body group-hover:gap-2 transition-all">
-                    Learn more <ArrowRight size={13} strokeWidth={1.5} />
-                  </span>
-                </Link>
+                <motion.div variants={fadeInUp} key={p.label}>
+                  <Link
+                    to={p.href}
+                    className={`block h-full group rounded-2xl border p-8 transition-all duration-300 premium-shadow-hover ${
+                      p.highlight
+                        ? "bg-[#1A4D2E]/[0.03] border-[#1A4D2E]/20 hover:border-[#1A4D2E]/40"
+                        : "bg-white border-[#E8EDE9] hover:border-[#1A4D2E]/20"
+                    }`}
+                  >
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-colors ${
+                      p.highlight ? "bg-[#1A4D2E]/10 group-hover:bg-[#1A4D2E]" : "bg-[#F2F5F3] group-hover:bg-[#1A4D2E]"
+                    }`}>
+                      <Icon
+                        size={20}
+                        strokeWidth={1.5}
+                        className={`transition-colors ${p.highlight ? "text-[#1A4D2E] group-hover:text-white" : "text-[#1A4D2E] group-hover:text-white"}`}
+                      />
+                    </div>
+                    <h3 className={`font-heading font-medium text-lg mb-2 transition-colors ${
+                      p.highlight ? "text-[#1A4D2E]" : "text-[#1C201E]"
+                    }`}>
+                      {p.label}
+                    </h3>
+                    <p className="font-body text-[0.875rem] text-[#4E5A54] leading-relaxed mb-6">{p.desc}</p>
+                    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1A4D2E] font-body group-hover:gap-2.5 transition-all">
+                      Learn more <ArrowRight size={14} strokeWidth={1.5} />
+                    </span>
+                  </Link>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* ── 4. WHY TAXNEXT ───────────────────────────────────── */}
-      <section data-testid="why-taxnext-section" className="bg-[#F2F5F3] border-y border-[#E8EDE9]">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-16 lg:py-24">
-          <div className="grid lg:grid-cols-2 gap-14 lg:gap-24 items-start">
-
-            {/* Left: Positioning copy */}
-            <div>
-              <span className="block text-[10.5px] uppercase tracking-[0.16em] font-semibold text-[#1A4D2E] mb-5 font-body">
-                What Makes Us Different
-              </span>
-              <h2 className="font-heading font-medium text-[1.875rem] sm:text-[2.25rem] text-[#1C201E] tracking-tight leading-[1.2] mb-7">
-                A qualified Chartered Accountant.<br />
-                Not a portal.
-              </h2>
-              <div className="space-y-5 text-[#4E5A54] font-body text-[0.9375rem] leading-[1.8]">
-                <p>
-                  Most online tax services today automate what should be handled with care. They ask
-                  standardised questions, produce standardised outputs, and leave the client to
-                  determine whether the result applies to their actual situation.
-                </p>
-                <p>
-                  VNAV Associates operates differently. CA. Prasad reviews each client's specific
-                  circumstances before advising. Every return is approved by a qualified Chartered
-                  Accountant before it is submitted — and the same CA remains available after the
-                  filing is done.
-                </p>
-                <p className="text-[#1C201E] font-medium">
-                  Professional judgment is not something we delegate to software.
-                </p>
-              </div>
-              <Link
-                to="/about"
-                className="inline-flex items-center gap-1.5 text-[0.875rem] font-semibold text-[#1A4D2E] font-body mt-8 hover:gap-2.5 transition-all"
-              >
-                About VNAV Associates
-                <ChevronRight size={14} strokeWidth={2} />
-              </Link>
-            </div>
-
-            {/* Right: 4 differentiators */}
-            <div className="divide-y divide-[#E8EDE9]">
-              {differentiators.map((d, i) => (
-                <div key={i} data-testid={`differentiator-${i}`} className="flex items-start gap-5 py-6 first:pt-0 last:pb-0">
-                  <div className="w-8 h-8 rounded-lg bg-[#E4EDE6] flex items-center justify-center shrink-0 mt-0.5">
-                    <CheckCircle size={14} strokeWidth={1.5} className="text-[#1A4D2E]" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-medium text-[0.9375rem] text-[#1C201E] mb-1.5">{d.title}</h3>
-                    <p className="font-body text-[0.8375rem] text-[#4E5A54] leading-[1.75]">{d.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 5. HOW IT WORKS ──────────────────────────────────── */}
-      <section data-testid="how-it-works-section" className="bg-[#FBFBF9]">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-16 lg:py-24">
-          <div className="mb-14 lg:mb-16">
+      {/* ── 4. HOW IT WORKS ──────────────────────────────────── */}
+      <section data-testid="how-it-works-section" className="bg-white py-24 lg:py-32 border-y border-[#E8EDE9]">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="mb-14 lg:mb-20">
             <span className="block text-[10.5px] uppercase tracking-[0.16em] font-semibold text-[#1A4D2E] mb-4 font-body">
-              The Process
+              Engagement Process
             </span>
-            <h2 className="font-heading font-medium text-[1.875rem] sm:text-[2.25rem] text-[#1C201E] tracking-tight mb-3">
-              A clear process, from first call to final filing.
+            <h2 className="font-heading font-medium text-[1.875rem] sm:text-[2.25rem] text-[#1C201E] tracking-tight mb-4">
+              A structured approach to<br />professional compliance.
             </h2>
             <p className="font-body text-[0.9375rem] text-[#4E5A54] max-w-lg leading-[1.8]">
-              Every step is handled by the same CA who advises you.
+              Professional judgement is applied at every stage of the engagement to ensure accuracy and regulatory adherence.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-10 lg:gap-16">
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true }}
+            className="grid md:grid-cols-3 gap-12 lg:gap-20"
+          >
             {steps.map((step) => (
-              <div key={step.num} data-testid={`step-${step.num}`}>
-                <span className="font-heading font-light text-[5rem] leading-none select-none block mb-4" style={{ color: "#DDE3DE" }}>
+              <motion.div variants={fadeInUp} key={step.num}>
+                <span className="font-heading font-light text-[5rem] leading-none select-none block mb-6 opacity-30 text-[#1A4D2E]">
                   {step.num}
                 </span>
-                <h3 className="font-heading font-medium text-[1rem] text-[#1C201E] mb-2.5">{step.title}</h3>
-                <p className="font-body text-[0.875rem] text-[#4E5A54] leading-[1.8]">{step.desc}</p>
-              </div>
+                <h3 className="font-heading font-medium text-[1.125rem] text-[#1C201E] mb-3">{step.title}</h3>
+                <p className="font-body text-[0.9375rem] text-[#4E5A54] leading-[1.8]">{step.desc}</p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="mt-12">
+          <motion.div variants={fadeInUp} initial="initial" whileInView="whileInView" viewport={{ once: true }} className="mt-16">
             <Link
               to="/contact"
-              data-testid="how-it-works-cta"
-              className="inline-flex items-center gap-2 bg-[#1A4D2E] text-white rounded-lg px-7 py-3.5 font-semibold font-body text-[0.875rem] hover:bg-[#133b23] transition-colors shadow-sm tracking-wide"
+              className="inline-flex items-center gap-2 bg-[#1A4D2E] text-white rounded-lg px-8 py-4 font-semibold font-body text-[0.9375rem] hover:bg-[#133b23] transition-colors shadow-sm tracking-wide"
             >
-              Book a Free Consultation
-              <ArrowRight size={15} strokeWidth={1.5} />
+              Contact Information
+              <ArrowRight size={16} strokeWidth={1.5} />
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* ── 6. FOUNDER ───────────────────────────────────────── */}
-      <section data-testid="founder-section" className="bg-[#F2F5F3] border-y border-[#E8EDE9]">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-16 lg:py-24">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-
-            {/* Image */}
-            <div className="order-2 lg:order-1 relative">
-              <div className="rounded-2xl overflow-hidden shadow-md border border-[#E8EDE9]">
-                <img
-                  src={FOUNDER_IMAGE}
-                  alt="CA. V.V.N.Prasad. Gupta — Founder, VNAV Associates"
-                  className="w-full h-[440px] object-cover object-top"
-                  loading="lazy"
-                />
-              </div>
-              {/* Credential badge */}
-              <div className="absolute -bottom-5 right-4 sm:right-8 bg-white rounded-xl border border-[#E8EDE9] shadow-md px-5 py-3.5">
-                <p className="font-heading font-semibold text-[#1C201E] text-[0.875rem] leading-snug">
-                  CA. V.V.N.Prasad. Gupta
-                </p>
-                <p className="font-body text-[0.75rem] text-[#4E5A54]">ICAI Member · Chartered Accountant</p>
-              </div>
-            </div>
-
-            {/* Text */}
-            <div className="order-1 lg:order-2 pt-0">
-              <span className="block text-[11px] uppercase tracking-[0.14em] font-semibold text-[#1A4D2E] mb-4 font-body">
-                The CA Behind TaxNext.in
-              </span>
-              <h2 className="font-heading font-medium text-[1.875rem] sm:text-[2.25rem] text-[#1C201E] tracking-tight leading-snug mb-5">
-                CA. V.V.N.Prasad. Gupta
-              </h2>
-
-              <p className="font-body text-[0.9375rem] text-[#4E5A54] leading-[1.75] mb-5">
-                CA. Prasad founded VNAV Associates because straightforward, expert tax guidance was
-                harder to find than it should be. Most people file incorrectly — not through
-                carelessness, but because accessible CA-level advice simply wasn't available to them.
-                VNAV Associates exists to change that.
-              </p>
-              <p className="font-body text-[0.9375rem] text-[#4E5A54] leading-[1.75] mb-7">
-                Every client engagement is reviewed personally. No delegation to juniors. No
-                generic-output software standing in for professional judgment.
-              </p>
-
-              {/* Pull quote */}
-              <blockquote className="border-l-2 border-[#1A4D2E] pl-5 mb-8">
-                <p className="font-heading font-medium text-[#1C201E] text-[1rem] leading-[1.6] italic">
-                  "Tax law in India changes every year. My job is to make sure those changes
-                  work in your favour — not catch you out."
-                </p>
-                <footer className="font-body text-[0.8125rem] text-[#4E5A54] mt-2.5">
-                  — CA. V.V.N.Prasad. Gupta
-                </footer>
-              </blockquote>
-
-              <ul className="space-y-3 mb-9">
-                {founderCredentials.map((c) => (
-                  <li key={c} className="flex items-start gap-2.5">
-                    <CheckCircle size={13} strokeWidth={1.5} className="text-[#1A4D2E] mt-0.5 shrink-0" />
-                    <span className="font-body text-[0.8375rem] text-[#4E5A54]">{c}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <Link
-                to="/about"
-                data-testid="founder-about-link"
-                className="inline-flex items-center gap-1.5 text-[0.875rem] font-semibold text-[#1A4D2E] font-body hover:gap-2.5 transition-all"
-              >
-                More about our practice
-                <ChevronRight size={14} strokeWidth={2} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 7. CALCULATOR TEASER ─────────────────────────────── */}
-      <section data-testid="calculator-teaser-section" className="bg-[#FBFBF9]">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-16 lg:py-24">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+      {/* ── 6. FAQ SECTION ───────────────────────────────────── */}
+      <section className="bg-white py-24 lg:py-32 border-t border-[#E8EDE9]">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-[1fr_1.5fr] gap-16 items-start">
             <div>
-              <span className="block text-[11px] uppercase tracking-[0.14em] font-semibold text-[#1A4D2E] mb-3 font-body">
-                Free Tools
-              </span>
-              <h2 className="font-heading font-medium text-[1.875rem] sm:text-[2.25rem] text-[#1C201E] tracking-tight mb-2">
-                Estimate before we meet.
-              </h2>
-              <p className="font-body text-sm text-[#4E5A54] max-w-md leading-relaxed">
-                Use our calculators before your consultation to arrive with a clear sense of your
-                tax position. No registration required.
-              </p>
-            </div>
-            <Link
-              to="/calculators"
-              data-testid="all-calculators-btn"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-[#1A4D2E] font-body whitespace-nowrap shrink-0 hover:gap-2.5 transition-all"
-            >
-              All calculators
-              <ArrowRight size={15} strokeWidth={1.5} />
-            </Link>
-          </div>
-
-          <div className="grid sm:grid-cols-3 gap-5">
-            {calculatorTeasers.map((c) => {
-              const Icon = c.icon;
-              return (
-                <Link
-                  key={c.title}
-                  to={c.href}
-                  data-testid={`calc-teaser-${c.title.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="group bg-white rounded-xl border border-[#E8EDE9] p-6 hover:border-[#1A4D2E]/30 hover:shadow-sm transition-all flex items-start gap-4"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-[#F2F5F3] flex items-center justify-center shrink-0 group-hover:bg-[#1A4D2E] transition-colors">
-                    <Icon size={18} strokeWidth={1.5} className="text-[#1A4D2E] group-hover:text-white transition-colors" />
-                  </div>
-                  <div>
-                    <p className="font-heading font-medium text-[#1C201E] text-sm mb-0.5 group-hover:text-[#1A4D2E] transition-colors">
-                      {c.title}
-                    </p>
-                    <p className="font-body text-[0.75rem] text-[#4E5A54]">{c.sub}</p>
-                    <span className="inline-flex items-center gap-1 text-[0.75rem] font-medium text-[#4E5A54] font-body mt-2 group-hover:text-[#1A4D2E] transition-colors">
-                      Coming soon
-                    </span>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 8. INSIGHTS TEASER ───────────────────────────────── */}
-      <section data-testid="insights-section" className="bg-[#F2F5F3] border-y border-[#E8EDE9]">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-16 lg:py-24">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-            <div>
-              <span className="block text-[11px] uppercase tracking-[0.14em] font-semibold text-[#1A4D2E] mb-3 font-body">
-                Tax Insights
-              </span>
-              <h2 className="font-heading font-medium text-[1.875rem] sm:text-[2.25rem] text-[#1C201E] tracking-tight mb-2">
-                Useful reading from our practice.
-              </h2>
-              <p className="font-body text-sm text-[#4E5A54] leading-relaxed">
-                Plain-language guides on tax, GST, and compliance — updated regularly.
-              </p>
-            </div>
-            <Link
-              to="/insights"
-              data-testid="all-insights-btn"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-[#1A4D2E] font-body whitespace-nowrap shrink-0 hover:gap-2.5 transition-all"
-            >
-              All articles
-              <ArrowRight size={15} strokeWidth={1.5} />
-            </Link>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {articles.map((art, i) => (
-              <Link
-                key={i}
-                to={art.href}
-                data-testid={`article-card-${i}`}
-                className="group bg-white rounded-xl border border-[#E8EDE9] overflow-hidden hover:shadow-md transition-shadow"
-              >
-                <div className="relative h-44 overflow-hidden">
-                  <img
-                    src={art.img}
-                    alt={art.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[#1A4D2E] text-[0.6875rem] font-semibold font-body px-2 py-0.5 rounded-full">
-                    {art.tag}
-                  </span>
-                </div>
-                <div className="p-5">
-                  <p className="font-body text-[0.75rem] text-[#4E5A54] mb-1.5">{art.date}</p>
-                  <h3 className="font-heading font-medium text-[0.9375rem] text-[#1C201E] leading-snug group-hover:text-[#1A4D2E] transition-colors">
-                    {art.title}
-                  </h3>
-                  <span className="inline-flex items-center gap-1 text-[0.8125rem] font-medium text-[#1A4D2E] font-body mt-3.5 group-hover:gap-2 transition-all">
-                    Read more <ArrowRight size={12} strokeWidth={1.5} />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 9. TESTIMONIALS ──────────────────────────────────── */}
-      <section data-testid="testimonials-section" className="bg-[#FBFBF9]">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-16 lg:py-24">
-          <div className="mb-12 lg:mb-16">
-            <span className="block text-[10.5px] uppercase tracking-[0.16em] font-semibold text-[#1A4D2E] mb-4 font-body">
-              Client Stories
-            </span>
-            <h2 className="font-heading font-medium text-[1.875rem] sm:text-[2.25rem] text-[#1C201E] tracking-tight">
-              What our clients say.
-            </h2>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-            {testimonials.map((t, i) => (
-              <div key={i} data-testid={`testimonial-card-${i}`} className="bg-white border border-[#E8EDE9] rounded-xl p-7">
-                <div className="flex gap-0.5 mb-5">
-                  {Array.from({ length: t.stars }).map((_, s) => (
-                    <Star key={s} size={12} fill="#1A4D2E" strokeWidth={0} className="text-[#1A4D2E]" />
-                  ))}
-                </div>
-                <p className="font-body text-[0.9rem] text-[#2C3830] leading-[1.85] mb-7 flex-1">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div className="pt-5 border-t border-[#F0F4F1] flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-[#E4EDE6] flex items-center justify-center shrink-0">
-                    <span className="font-heading font-semibold text-[0.75rem] text-[#1A4D2E]">{t.name.charAt(0)}</span>
-                  </div>
-                  <div>
-                    <p className="font-heading font-medium text-[0.875rem] text-[#1C201E]">{t.name}</p>
-                    <p className="font-body text-[0.75rem] text-[#4E5A54] mt-0.5">{t.role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 10. FAQ ──────────────────────────────────────────── */}
-      <section data-testid="faq-section" className="bg-[#F2F5F3] border-y border-[#E8EDE9]">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-16 lg:py-24">
-          <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
-
-            {/* Left: heading */}
-            <div className="lg:col-span-2">
               <span className="block text-[10.5px] uppercase tracking-[0.16em] font-semibold text-[#1A4D2E] mb-4 font-body">
                 Questions
               </span>
-              <h2 className="font-heading font-medium text-[1.875rem] sm:text-[2.25rem] text-[#1C201E] tracking-tight leading-snug mb-5">
-                Common questions.
+              <h2 className="font-heading font-medium text-[1.875rem] sm:text-[2.25rem] text-[#1C201E] tracking-tight leading-tight mb-6">
+                Common queries about<br />our practice.
               </h2>
-              <p className="font-body text-[0.9375rem] text-[#4E5A54] leading-[1.8] mb-7">
-                For any other question, please contact us directly.
+              <p className="font-body text-[0.9375rem] text-[#4E5A54] leading-[1.8] mb-8">
+                If you have a different question, please <Link to="/contact" className="text-[#1A4D2E] font-medium underline underline-offset-4 decoration-[#1A4D2E]/30 hover:decoration-[#1A4D2E] transition-all">contact us directly</Link>.
               </p>
-              <Link
-                to="/contact"
-                data-testid="faq-contact-btn"
-                className="inline-flex items-center gap-2 bg-[#1A4D2E] text-white rounded-lg px-6 py-3 font-semibold font-body text-[0.875rem] hover:bg-[#133b23] transition-colors tracking-wide shadow-sm"
-              >
-                Send an enquiry
-                <ArrowRight size={14} strokeWidth={1.5} />
-              </Link>
+              <div className="p-6 bg-[#F2F5F3] rounded-2xl border border-[#E8EDE9]">
+                <div className="flex items-center gap-3 mb-3">
+                   <Clock size={16} className="text-[#1A4D2E]" />
+                   <p className="font-heading font-medium text-[#1C201E] text-sm">Responsive Support</p>
+                </div>
+                <p className="font-body text-[0.8125rem] text-[#4E5A54] leading-relaxed">
+                  We respond to all verified WhatsApp and email enquiries within 24 working hours.
+                </p>
+              </div>
             </div>
 
-            {/* Right: accordion */}
-            <div className="lg:col-span-3 bg-white rounded-xl border border-[#E8EDE9] px-6 divide-y-0 shadow-sm">
-              {faqs.map((faq, i) => (
+            <div className="bg-[#FBFBF9] rounded-2xl border border-[#E8EDE9] px-6 sm:px-10 py-2">
+              {faqs.map((f, i) => (
                 <FAQItem
                   key={i}
-                  q={faq.q}
-                  a={faq.a}
+                  q={f.q}
+                  a={f.a}
                   open={openFaq === i}
                   onToggle={() => setOpenFaq(openFaq === i ? null : i)}
                 />
@@ -768,41 +537,36 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 11. FINAL CTA ────────────────────────────────────── */}
-      <section data-testid="cta-section" className="bg-[#1A4D2E]">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-16 lg:py-20">
-          <div className="max-w-2xl mx-auto text-center">
-            <span className="block text-[10.5px] uppercase tracking-[0.16em] font-semibold text-white/45 mb-5 font-body">
-              Get Started
-            </span>
-            <h2 className="font-heading font-semibold text-[1.875rem] sm:text-[2.5rem] text-white tracking-tight leading-[1.2] mb-4">
-              Let's get your compliance in order.
-            </h2>
-            <p className="font-body text-[0.9375rem] text-white/65 mb-10 leading-[1.8]">
-              One conversation is all it takes. Tell us your situation, and we'll confirm exactly how we can help.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
-              <Link
-                to="/contact"
-                data-testid="final-cta-btn"
-                className="inline-flex items-center justify-center gap-2 bg-white text-[#1A4D2E] rounded-lg px-8 py-3.5 font-semibold font-body text-[0.9375rem] hover:bg-[#F2F5F3] transition-colors shadow-sm tracking-wide"
-              >
-                Book a Free Consultation
-                <ArrowRight size={16} strokeWidth={1.5} />
-              </Link>
-              <a
-                href="tel:+910000000000"
-                data-testid="final-call-btn"
-                className="inline-flex items-center justify-center gap-2 bg-transparent text-white border border-white/25 rounded-lg px-8 py-3.5 font-medium font-body text-[0.9375rem] hover:bg-white/8 transition-colors"
-              >
-                <Phone size={16} strokeWidth={1.5} />
-                +91 00000 00000
-              </a>
-            </div>
-            <p className="font-body text-[0.75rem] text-white/35">
-              No commitment required &nbsp;·&nbsp; We respond within 24 hours
-            </p>
+      {/* ── 7. FINAL CTA ─────────────────────────────────────── */}
+      <section className="bg-[#1A4D2E] py-20 lg:py-28 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5 pointer-events-none">
+           <div className="absolute top-0 left-0 w-full h-full" style={{ backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)", backgroundSize: "40px 40px" }} />
+        </div>
+        <div className="max-w-3xl mx-auto px-5 text-center relative z-10">
+          <h2 className="font-heading font-medium text-[2.25rem] sm:text-[2.75rem] text-white tracking-tight leading-tight mb-8">
+            Professional engagement for regulatory compliance.
+          </h2>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              to="/contact"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-[#1A4D2E] rounded-lg px-8 py-4 font-semibold font-body text-[1rem] hover:bg-white/90 transition-colors shadow-xl"
+            >
+              Contact Information
+              <MessageSquare size={18} />
+            </Link>
+            <a
+              href="https://wa.me/919440428417"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-transparent text-white border border-white/40 rounded-lg px-8 py-4 font-semibold font-body text-[1rem] hover:bg-white/10 transition-colors shadow-xl"
+            >
+              WhatsApp Contact
+              <ArrowRight size={18} />
+            </a>
           </div>
+          <p className="mt-8 text-white/50 font-body text-sm">
+            Professional communication · Strictly confidential · As per ethical standards
+          </p>
         </div>
       </section>
     </>

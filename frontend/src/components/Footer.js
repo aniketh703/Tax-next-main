@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Linkedin, Twitter, Facebook, ArrowRight } from "lucide-react";
 
 const servicesLinks = [
-  { name: "GST Registration & Returns", href: "/services#gst" },
-  { name: "Income Tax Filing", href: "/services#itr" },
-  { name: "Company Registration", href: "/services#business" },
-  { name: "NRI Taxation", href: "/services#nri" },
-  { name: "Startup Compliance", href: "/services#startup" },
-  { name: "Audit & Assurance", href: "/services#audit" },
+  { name: "Audit & Assurance", href: "/services" },
+  { name: "Direct Taxation (ITR)", href: "/services" },
+  { name: "Indirect Tax (GST)", href: "/services" },
+  { name: "Business Advisory", href: "/services" },
+  { name: "Regulatory & ROC", href: "/services" },
+  { name: "NRI Taxation", href: "/services" },
 ];
 
 const quickLinks = [
@@ -29,21 +29,26 @@ export default function Footer() {
 
           {/* Col 1: Brand */}
           <div className="lg:col-span-1">
-            <Link to="/" className="inline-flex flex-col leading-none mb-5">
-              <span className="font-heading font-semibold text-2xl text-white tracking-tight">
-                TaxNext<span className="text-[#6b9e7a] font-normal">.in</span>
+            <Link to="/" className="inline-flex flex-col leading-none mb-6">
+              <span className="font-heading font-semibold text-[1.5rem] text-[#1A4D2E] tracking-tight leading-none bg-white px-2 py-1.5 rounded-sm w-fit mb-2 shadow-sm">
+                TaxNext.in
               </span>
-              <span className="font-body text-[10px] tracking-[0.04em] text-[#9baba2] mt-0.5">
-                by VNAV Associates
+              <span className="font-body text-[10.5px] tracking-[0.1em] text-white mt-1 uppercase font-semibold">
+                VNAV & ASSOCIATES | Chartered Accountants
               </span>
+              <div className="mt-3 flex items-center gap-2 text-[0.625rem] text-[#9baba2] font-body uppercase tracking-wider">
+                <span className="px-1.5 py-0.5 border border-white/20 rounded">ICAI Registered</span>
+                <span className="px-1.5 py-0.5 border border-white/20 rounded">Peer Reviewed</span>
+              </div>
             </Link>
             <p className="font-body text-sm leading-relaxed text-[#9baba2] mb-5">
-              Expert-led tax and compliance services by CA. V.V.N.Prasad. Gupta.
-              Trusted by 500+ clients across India.
+              A professionally managed Chartered Accountancy firm providing reliable and ethical professional services in audit, taxation, and advisory.
             </p>
             <div className="flex items-center gap-3">
               <a
-                href="#"
+                href="https://www.linkedin.com/in/ca-prasadguptavustepalle/"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="LinkedIn"
                 className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center hover:bg-[#1A4D2E] transition-colors focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1C201E]"
               >
@@ -124,37 +129,38 @@ export default function Footer() {
           {/* Col 4: Contact */}
           <div>
             <h3 className="font-heading font-semibold text-white text-sm uppercase tracking-[0.07em] mb-5">
-              Get in Touch
+              Contact Information
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin size={15} strokeWidth={1.5} className="text-[#1A4D2E] mt-0.5 shrink-0" />
                 <span className="font-body text-sm text-[#9baba2] leading-snug">
-                  Hyderabad, Telangana<br />India — 500 000
+                  <strong>Kurnool:</strong> 404, Suresh Towers, Santosh Nagar, NH 44 Road, Kurnool – 518003<br />
+                  <span className="mt-2 block"><strong>Chennai:</strong> Flat No. C, No. 9, Jai Nagar, 15th Street, Arumbakkam, Chennai – 600106</span>
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={15} strokeWidth={1.5} className="text-[#1A4D2E] shrink-0" />
-                <a href="tel:+910000000000" className="font-body text-sm text-[#9baba2] hover:text-white transition-colors">
-                  +91 00000 00000
+                <a href="tel:+919440428417" className="font-body text-sm text-[#9baba2] hover:text-white transition-colors">
+                  +91 94404 28417
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={15} strokeWidth={1.5} className="text-[#1A4D2E] shrink-0" />
-                <a href="mailto:info@taxnext.in" className="font-body text-sm text-[#9baba2] hover:text-white transition-colors">
-                  info@taxnext.in
+                <a href="mailto:taxnext.in@gmail.com" className="font-body text-sm text-[#9baba2] hover:text-white transition-colors">
+                  taxnext.in@gmail.com
                 </a>
               </li>
             </ul>
             <div className="mt-6">
               <a
-                href="https://wa.me/910000000000"
+                href="https://wa.me/919440428417"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="footer-whatsapp-btn"
                 className="inline-flex items-center gap-2 bg-[#1A4D2E] text-white text-sm font-medium font-body rounded-lg px-4 py-2.5 hover:bg-[#133b23] transition-colors"
               >
-                WhatsApp Us
+                WhatsApp Contact
                 <ArrowRight size={14} />
               </a>
             </div>
@@ -163,13 +169,21 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="font-body text-xs text-[#7a8c82] text-center sm:text-left">
-            © {new Date().getFullYear()} VNAV Associates. All rights reserved. CA. V.V.N.Prasad. Gupta — Chartered Accountant.
-          </p>
-          <p className="font-body text-xs text-[#7a8c82] text-center sm:text-right">
-            Registered with ICAI &nbsp;|&nbsp; TaxNext.in is a registered brand
+      <div className="border-t border-white/10 mt-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row items-center justify-between gap-5">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left">
+            <p className="font-body text-xs text-[#7a8c82]">
+              © {new Date().getFullYear()} VNAV & Associates | Chartered Accountants
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 border-t sm:border-t-0 sm:border-l border-white/10 pt-3 sm:pt-0 sm:pl-6">
+              <Link to="/privacy-policy" className="font-body text-xs text-[#7a8c82] hover:text-white transition-colors">Privacy Policy</Link>
+              <Link to="/disclaimer" className="font-body text-xs text-[#7a8c82] hover:text-white transition-colors">Disclaimer</Link>
+              <Link to="/terms-and-conditions" className="font-body text-xs text-[#7a8c82] hover:text-white transition-colors">Terms of Use</Link>
+              <Link to="/cookie-policy" className="font-body text-xs text-[#7a8c82] hover:text-white transition-colors">Cookie Policy</Link>
+            </div>
+          </div>
+          <p className="font-body text-[0.6875rem] text-[#7a8c82] text-center lg:text-right max-w-xl leading-relaxed">
+            In compliance with the ICAI Code of Ethics: This website is for general informational purposes only, does not constitute professional advice, and does not solicit professional work.
           </p>
         </div>
       </div>

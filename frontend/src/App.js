@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -15,11 +15,15 @@ import AITaxAssistant from "./pages/AITaxAssistant";
 import ClientPortal from "./pages/ClientPortal";
 import NoticeHandling from "./pages/NoticeHandling";
 import NotFound from "./pages/NotFound";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Disclaimer from "./pages/Disclaimer";
+import TermsConditions from "./pages/TermsConditions";
+import CookiePolicy from "./pages/CookiePolicy";
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
@@ -35,10 +39,14 @@ function App() {
             <Route path="notice-handling" element={<NoticeHandling />} />
             <Route path="ai-tax-assistant" element={<AITaxAssistant />} />
             <Route path="client-portal" element={<ClientPortal />} />
+            <Route path="privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="disclaimer" element={<Disclaimer />} />
+            <Route path="terms-and-conditions" element={<TermsConditions />} />
+            <Route path="cookie-policy" element={<CookiePolicy />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }

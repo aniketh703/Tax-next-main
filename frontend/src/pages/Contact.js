@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   Phone, Mail, MapPin, Clock, MessageCircle, Send, CheckCircle, ArrowRight, ChevronRight
 } from "lucide-react";
+import Highlighter from "../components/ui/Highlighter";
+import SEO from "../components/SEO";
 
 const services = [
   "Income Tax Filing (ITR)",
@@ -17,11 +20,26 @@ const services = [
 ];
 
 const whatNext = [
-  "CA. Prasad reviews your enquiry personally.",
-  "You receive a call or message within 24 hours.",
+  "Our team reviews your enquiry.",
+  "We coordinate a response as per professional requirements.",
   "We discuss your situation and confirm scope and fees.",
-  "No obligation. Work begins only when you're ready.",
+  "Strictly confidential. Proceed only when you're ready.",
 ];
+
+
+/* ─── Motion Variants ────────────────────────────────────────── */
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.6, ease: [0.215, 0.61, 0.355, 1] }
+};
+
+const staggerContainer = {
+  initial: {},
+  whileInView: { transition: { staggerChildren: 0.1 } },
+  viewport: { once: true }
+};
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -29,81 +47,95 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const subject = encodeURIComponent(`Enquiry from ${form.name} — ${form.service || 'General'}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone || 'Not provided'}\nService Required: ${form.service || 'Not specified'}\n\nMessage:\n${form.message}`
+    );
+    window.open(`mailto:taxnext.in@gmail.com?subject=${subject}&body=${body}`, '_blank');
     setSubmitted(true);
   };
 
   return (
     <>
       {/* ── Hero ─────────────────────────────────────── */}
-      <section className="bg-white border-b border-[#E8EDE9]">
+      <motion.section 
+        initial="initial"
+        whileInView="whileInView"
+        viewport={{ once: true }}
+        variants={staggerContainer}
+        className="bg-white border-b border-[#E8EDE9]"
+      >
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-10 pb-14 lg:pt-14 lg:pb-20">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 mb-8 text-[0.8125rem] text-[#4E5A54] font-body">
+          <motion.nav variants={fadeInUp} aria-label="Breadcrumb" className="flex items-center gap-1.5 mb-8 text-[0.8125rem] text-[#4E5A54] font-body">
             <Link to="/" className="hover:text-[#1A4D2E] transition-colors">Home</Link>
             <ChevronRight size={13} className="text-[#C4CAC6]" aria-hidden="true" />
             <span aria-current="page" className="text-[#1C201E] font-medium">Contact</span>
-          </nav>
-          <span className="block text-[10.5px] uppercase tracking-[0.16em] font-semibold text-[#1A4D2E] mb-4 font-body">
-            Get in Touch
-          </span>
-          <h1 className="font-heading font-semibold text-[2.25rem] sm:text-[2.875rem] tracking-tight leading-[1.1] text-[#1C201E] mb-5 max-w-2xl">
-            Talk to CA. Prasad directly.
-          </h1>
-          <p className="font-body text-[1rem] text-[#4E5A54] leading-[1.8] max-w-xl">
-            Describe your situation using the form or contact us directly. We respond within 24 hours.
-          </p>
+          </motion.nav>
+          <motion.span variants={fadeInUp} className="block text-[10.5px] uppercase tracking-[0.16em] font-semibold text-[#1A4D2E] mb-4 font-body">
+            Communication Channels
+          </motion.span>
+          <motion.h1 variants={fadeInUp} className="font-heading font-semibold text-[2.25rem] sm:text-[2.875rem] tracking-tight leading-[1.1] text-[#1C201E] mb-5 max-w-2xl">
+            Communication <Highlighter>Channels</Highlighter>
+          </motion.h1>
+          <motion.p variants={fadeInUp} className="font-body text-[1rem] text-[#4E5A54] leading-[1.8] max-w-xl">
+            Describe your situation using the form or <span className="text-emphasize">reach out to our offices</span>. We provide professional support as per requirements.
+          </motion.p>
         </div>
-      </section>
+      </motion.section>
 
       {/* ── WhatsApp CTA Strip ────────────────────────── */}
-      <section className="bg-[#E4EDE6] border-b border-[#1A4D2E]/10">
+      <motion.section {...fadeInUp} className="bg-[#E4EDE6] border-b border-[#1A4D2E]/10">
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div className="flex items-center gap-2.5">
+          <motion.div variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true }} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <motion.div variants={fadeInUp} className="flex items-center gap-2.5">
               <MessageCircle size={15} strokeWidth={1.5} className="text-[#1A4D2E] shrink-0" />
               <p className="font-body text-[0.875rem] text-[#1C201E]">
-                <span className="font-medium">Prefer WhatsApp?</span> Send a quick message and we'll respond during business hours.
+                <span className="font-medium">WhatsApp Contact:</span> Professional enquiries can be sent via WhatsApp for timely coordination.
               </p>
-            </div>
-            <a
-              href="https://wa.me/910000000000"
+            </motion.div>
+            <motion.a
+              variants={fadeInUp}
+              href="https://wa.me/919440428417"
               target="_blank"
               rel="noopener noreferrer"
-              data-testid="whatsapp-cta-btn"
               className="inline-flex items-center gap-2 bg-[#1A4D2E] text-white rounded-lg px-4 py-2 font-body text-[0.8125rem] font-semibold hover:bg-[#133b23] transition-colors shrink-0"
             >
               <MessageCircle size={13} strokeWidth={1.5} />
-              WhatsApp Us
+              WhatsApp Contact
               <ArrowRight size={12} strokeWidth={1.5} />
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ── Main Content ──────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-14 lg:py-20">
         <div className="grid lg:grid-cols-5 gap-14 lg:gap-20">
 
           {/* ── Left: Contact info ──────────────────── */}
-          <div className="lg:col-span-2 space-y-10">
+          <motion.div variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true }} className="lg:col-span-2 space-y-10">
 
             {/* Contact items */}
-            <div>
+            <motion.div variants={fadeInUp}>
               <h2 className="font-heading font-medium text-[1.125rem] text-[#1C201E] mb-6">
                 Contact Details
               </h2>
               <div className="space-y-5">
                 {[
-                  { icon: Phone,         label: "Phone",     value: "+91 00000 00000",        href: "tel:+910000000000" },
-                  { icon: MessageCircle, label: "WhatsApp",  value: "+91 00000 00000",        href: "https://wa.me/910000000000" },
-                  { icon: Mail,          label: "Email",     value: "info@taxnext.in",         href: "mailto:info@taxnext.in" },
-                  { icon: MapPin,        label: "Office",    value: "Hyderabad, Telangana",   href: "#" },
+                  { icon: MapPin, label: "Kurnool Office", value: "404, Suresh Towers, Santosh Nagar, NH 44 Road, Kurnool – 518003", href: "#" },
+                  { icon: Phone, label: "Kurnool Phone", value: "+91 94404 28417 / +91 83097 49951", href: "tel:+919440428417" },
+                  { icon: Mail, label: "Kurnool Email", value: "vnav.knl@gmail.com", href: "mailto:vnav.knl@gmail.com" },
+                  { icon: MapPin, label: "Chennai Office", value: "Flat No. C, No. 9, Jai Nagar, 15th Street, Arumbakkam, Chennai – 600106", href: "#" },
+                  { icon: Phone, label: "Chennai Phone", value: "044-4555 4495 / +91 99625 70105", href: "tel:04445554495" },
+                  { icon: Mail, label: "Chennai Email", value: "vnav.chennai@gmail.com", href: "mailto:vnav.chennai@gmail.com" },
+                  { icon: Phone, label: "General Phone", value: "+91 94404 28417", href: "tel:+919440428417" },
+                  { icon: Mail, label: "General Email", value: "taxnext.in@gmail.com", href: "mailto:taxnext.in@gmail.com" },
                 ].map(({ icon: Icon, label, value, href }) => (
                   <a
                     key={label}
                     href={href}
                     target={href.startsWith("http") ? "_blank" : undefined}
                     rel="noopener noreferrer"
-                    data-testid={`contact-${label.toLowerCase()}`}
                     className="flex items-start gap-4 group"
                   >
                     <div className="w-10 h-10 rounded-xl bg-[#E4EDE6] flex items-center justify-center shrink-0 group-hover:bg-[#1A4D2E] transition-colors">
@@ -118,10 +150,10 @@ export default function Contact() {
                   </a>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
             {/* Office hours */}
-            <div className="bg-[#F2F5F3] rounded-xl border border-[#E8EDE9] p-5">
+            <motion.div variants={fadeInUp} className="bg-[#F2F5F3] rounded-xl border border-[#E8EDE9] p-5">
               <div className="flex items-center gap-2 mb-3">
                 <Clock size={14} strokeWidth={1.5} className="text-[#1A4D2E]" />
                 <p className="font-heading font-medium text-[#1C201E] text-[0.875rem]">Office Hours</p>
@@ -131,10 +163,10 @@ export default function Contact() {
                 <p>Sunday: Closed</p>
                 <p className="text-[#1A4D2E] font-medium mt-3">WhatsApp available after hours</p>
               </div>
-            </div>
+            </motion.div>
 
             {/* What happens next */}
-            <div>
+            <motion.div variants={fadeInUp}>
               <h3 className="font-body text-[10px] uppercase tracking-[0.13em] font-semibold text-[#9BABA2] mb-5">
                 What happens next
               </h3>
@@ -148,24 +180,25 @@ export default function Contact() {
                   </li>
                 ))}
               </ol>
-            </div>
+            </motion.div>
 
             {/* Trust signal */}
-            <div className="flex flex-wrap gap-x-5 gap-y-2.5 pt-2 border-t border-[#E8EDE9]">
-              {["ICAI Registered", "10+ years practice", "500+ clients"].map((t) => (
+            <motion.div variants={fadeInUp} className="flex flex-wrap gap-x-5 gap-y-2.5 pt-2 border-t border-[#E8EDE9]">
+              {["ICAI Registered", "10+ years practice", "Professional Compliance"].map((t) => (
                 <span key={t} className="flex items-center gap-1.5 text-[0.8125rem] text-[#4E5A54] font-body">
                   <CheckCircle size={12} strokeWidth={1.5} className="text-[#1A4D2E] shrink-0" />
                   {t}
                 </span>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* ── Right: Form ──────────────────────────── */}
-          <div className="lg:col-span-3">
+          <motion.div variants={fadeInUp} className="lg:col-span-3">
             {submitted ? (
-              <div
-                data-testid="contact-success"
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
                 className="bg-[#E4EDE6] border border-[#1A4D2E]/15 rounded-2xl p-12 text-center"
               >
                 <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-[#1A4D2E] mb-6">
@@ -175,23 +208,22 @@ export default function Contact() {
                   Enquiry received.
                 </h3>
                 <p className="font-body text-[0.875rem] text-[#4E5A54] max-w-sm mx-auto leading-[1.8]">
-                  CA. Prasad will review your message and contact you within 24 hours. All enquiries are treated in confidence.
+                  Our team will review your enquiry and provide professional support as per requirements. All communications are strictly confidential.
                 </p>
-              </div>
+              </motion.div>
             ) : (
               <form
-                data-testid="contact-form"
                 onSubmit={handleSubmit}
                 className="bg-white rounded-2xl border border-[#E8EDE9] p-8 sm:p-10"
                 style={{ boxShadow: "0 4px 24px -8px rgba(0,0,0,0.06)" }}
               >
-                <h2 className="font-heading font-medium text-[1.25rem] text-[#1C201E] mb-8">
+                <motion.h2 variants={fadeInUp} className="font-heading font-medium text-[1.25rem] text-[#1C201E] mb-8">
                   Send an enquiry
-                </h2>
+                </motion.h2>
 
-                <div className="space-y-6">
+                <motion.div variants={staggerContainer} initial="initial" whileInView="whileInView" viewport={{ once: true }} className="space-y-6">
                   {/* Name + Email */}
-                  <div className="grid sm:grid-cols-2 gap-5">
+                  <motion.div variants={fadeInUp} className="grid sm:grid-cols-2 gap-5">
                     <div>
                       <label htmlFor="contact-name" className="block font-body text-[0.8125rem] font-medium text-[#1C201E] mb-2">
                         Full Name <span className="text-red-500" aria-hidden="true">*</span>
@@ -201,7 +233,6 @@ export default function Contact() {
                         type="text"
                         required
                         autoComplete="name"
-                        data-testid="contact-name-input"
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
                         placeholder="Your full name"
@@ -217,17 +248,16 @@ export default function Contact() {
                         type="email"
                         required
                         autoComplete="email"
-                        data-testid="contact-email-input"
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
                         placeholder="your@email.com"
                         className="w-full h-11 rounded-lg border border-[#E8EDE9] px-4 font-body text-[0.875rem] text-[#1C201E] bg-[#FBFBF9] placeholder:text-[#AEBDB4] focus:ring-2 focus:ring-[#1A4D2E] focus:border-[#1A4D2E] outline-none transition"
                       />
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* Phone + Service */}
-                  <div className="grid sm:grid-cols-2 gap-5">
+                  <motion.div variants={fadeInUp} className="grid sm:grid-cols-2 gap-5">
                     <div>
                       <label htmlFor="contact-phone" className="block font-body text-[0.8125rem] font-medium text-[#1C201E] mb-2">
                         Phone Number
@@ -236,10 +266,9 @@ export default function Contact() {
                         id="contact-phone"
                         type="tel"
                         autoComplete="tel"
-                        data-testid="contact-phone-input"
                         value={form.phone}
                         onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                        placeholder="+91 00000 00000"
+                        placeholder="+91 94404 28417"
                         className="w-full h-11 rounded-lg border border-[#E8EDE9] px-4 font-body text-[0.875rem] text-[#1C201E] bg-[#FBFBF9] placeholder:text-[#AEBDB4] focus:ring-2 focus:ring-[#1A4D2E] focus:border-[#1A4D2E] outline-none transition"
                       />
                     </div>
@@ -249,7 +278,6 @@ export default function Contact() {
                       </label>
                       <select
                         id="contact-service"
-                        data-testid="contact-service-select"
                         value={form.service}
                         onChange={(e) => setForm({ ...form, service: e.target.value })}
                         className="w-full h-11 rounded-lg border border-[#E8EDE9] px-4 font-body text-[0.875rem] text-[#1C201E] bg-[#FBFBF9] focus:ring-2 focus:ring-[#1A4D2E] focus:border-[#1A4D2E] outline-none transition cursor-pointer"
@@ -260,17 +288,16 @@ export default function Contact() {
                         ))}
                       </select>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* Message */}
-                  <div>
+                  <motion.div variants={fadeInUp}>
                     <label htmlFor="contact-message" className="block font-body text-[0.8125rem] font-medium text-[#1C201E] mb-2">
                       Your Message
                     </label>
                     <textarea
                       id="contact-message"
                       rows={4}
-                      data-testid="contact-message-input"
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       placeholder="Briefly describe what you need help with..."
@@ -279,25 +306,24 @@ export default function Contact() {
                     <p className="font-body text-[0.75rem] text-[#9BABA2] mt-1.5">
                       Be as brief or detailed as you like. We'll ask for more if needed.
                     </p>
-                  </div>
+                  </motion.div>
 
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+                  <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
                     <button
                       type="submit"
-                      data-testid="contact-submit-btn"
                       className="inline-flex items-center justify-center gap-2 bg-[#1A4D2E] text-white rounded-lg px-8 py-3.5 font-semibold font-body text-[0.875rem] hover:bg-[#133b23] transition-colors shadow-sm focus-visible:ring-2 focus-visible:ring-[#1A4D2E] focus-visible:ring-offset-2 tracking-wide"
                     >
-                      Send Enquiry
+                      Submit Enquiry
                       <Send size={14} strokeWidth={1.5} />
                     </button>
                     <p className="font-body text-[0.75rem] text-[#9BABA2]">
                       All enquiries are treated in confidence.
                     </p>
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               </form>
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
     </>

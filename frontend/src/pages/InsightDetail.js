@@ -5,9 +5,9 @@ import {
 
 /* ─── Images ────────────────────────────────────────────────── */
 const IMGS = {
-  budget: "https://images.unsplash.com/photo-1758691736764-2a88e313b1f2?crop=entropy&cs=srgb&fm=jpg&w=1200&q=80",
-  gst:    "https://images.unsplash.com/photo-1548950308-69fac3b90a45?crop=entropy&cs=srgb&fm=jpg&w=1200&q=80",
-  nri:    "https://static.prod-images.emergentagent.com/jobs/aebe5bae-79f1-412a-a57c-d6d295c09f4e/images/f85ba65ea96c90d5ea843db949e4dbd2a9d3061c733ef41871a9ae66e9dc87e5.png",
+  budget: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?crop=entropy&cs=srgb&fm=jpg&w=1200&q=80",
+  gst:    "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?crop=entropy&cs=srgb&fm=jpg&w=1200&q=80",
+  nri:    "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?crop=entropy&cs=srgb&fm=jpg&w=1200&q=80",
 };
 
 /* ─── Article registry ──────────────────────────────────────── */
@@ -1128,7 +1128,7 @@ function Sidebar({ article }) {
           data-testid="article-cta"
           className="inline-flex items-center gap-2 bg-white text-[#1A4D2E] rounded-lg px-4 py-2.5 font-medium font-body text-sm hover:bg-[#F2F5F3] transition-colors w-full justify-center"
         >
-          Book a Free Consultation
+          Contact Us
           <ArrowRight size={14} strokeWidth={1.5} />
         </Link>
       </div>
@@ -1287,7 +1287,7 @@ export default function InsightDetail() {
               data-testid="article-bottom-cta"
               className="inline-flex items-center justify-center gap-2 bg-white text-[#1A4D2E] rounded-lg px-7 py-3 font-medium font-body text-[0.9375rem] hover:bg-[#F2F5F3] transition-colors shadow-sm"
             >
-              Book a Free Consultation
+              Contact Us
               <ArrowRight size={16} strokeWidth={1.5} />
             </Link>
           </div>
