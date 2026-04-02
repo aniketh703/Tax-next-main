@@ -29,6 +29,25 @@ const navLinks = [
   { name: "Contact",             href: "/contact" },
 ];
 
+const servicesMenu = [
+  {
+    category: "Tax & Audit",
+    items: [
+      { name: "Audit & Assurance", href: "/services" },
+      { name: "Income Tax (ITR)", href: "/services" },
+      { name: "Indirect Tax (GST)", href: "/services" },
+    ],
+  },
+  {
+    category: "Advisory & NRI",
+    items: [
+      { name: "Business Advisory", href: "/services" },
+      { name: "Regulatory & ROC", href: "/services" },
+      { name: "NRI Taxation", href: "/services" },
+    ],
+  },
+];
+
 /* ─── Component ─────────────────────────────────────────────── */
 
 export default function Header() {
