@@ -46,7 +46,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3">
               <a
-                href="https://www.linkedin.com/in/ca-prasadguptavustepalle/"
+                href="https://www.linkedin.com/in/ca-v-v-n-v-n-p-gupta-vustepalle-a8a257124/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -178,7 +178,7 @@ export default function Footer() {
             <div className="flex flex-wrap justify-center gap-3 sm:gap-4 border-t sm:border-t-0 sm:border-l border-white/10 pt-3 sm:pt-0 sm:pl-6">
               <Link to="/privacy-policy" className="font-body text-xs text-[#7a8c82] hover:text-white transition-colors">Privacy Policy</Link>
               <Link to="/disclaimer" className="font-body text-xs text-[#7a8c82] hover:text-white transition-colors">Disclaimer</Link>
-              <Link to="/terms-and-conditions" className="font-body text-xs text-[#7a8c82] hover:text-white transition-colors">Terms of Use</Link>
+              <Link to="/terms-conditions" className="font-body text-xs text-[#7a8c82] hover:text-white transition-colors">Terms of Use</Link>
               <Link to="/cookie-policy" className="font-body text-xs text-[#7a8c82] hover:text-white transition-colors">Cookie Policy</Link>
             </div>
           </div>

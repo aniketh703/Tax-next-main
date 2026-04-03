@@ -23,7 +23,7 @@ const portalFeatures = [
   {
     icon: MessageSquare,
     title: "Direct CA Messaging",
-    desc: "Communicate with CA. Prasad in a secure, private channel — not over email.",
+    desc: "Communicate with CA. V.V.N. Prasad Gupta in a secure, private channel — not over email.",
   },
 ];
 
@@ -114,7 +114,7 @@ export default function ClientPortal() {
           </h1>
           <p className="font-body text-base text-[#4E5A54] leading-relaxed max-w-xl mb-6">
             The VNAV Associates Client Portal gives you a private dashboard to view filings,
-            track deadlines, store documents, and communicate directly with CA. Prasad.
+            track deadlines, store documents, and communicate directly with CA. V.V.N. Prasad Gupta.
           </p>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             {["Secure & private", "All filings in one place", "Direct CA access"].map((t) => (
@@ -194,7 +194,7 @@ export default function ClientPortal() {
               The portal will bring everything into one place when it launches.
             </p>
             <a
-              href="https://wa.me/910000000000"
+              href="https://wa.me/919440428417"
               target="_blank"
               rel="noopener noreferrer"
               data-testid="portal-whatsapp-btn"
@@ -212,7 +212,7 @@ export default function ClientPortal() {
               Not a client yet?
             </h3>
             <p className="font-body text-sm text-[#4E5A54] leading-relaxed mb-5">
-              Book a free 15-minute call with CA. Prasad. Once we begin working together,
+              Book a free 15-minute call with CA. V.V.N. Prasad Gupta. Once we begin working together,
               you'll be among the first to access the portal at launch.
             </p>
             <Link

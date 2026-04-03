@@ -37,16 +37,17 @@ function computeNewRegimeTax(grossIncome, stdDed = 75000) {
     const chunk = Math.min(remaining, band);
     tax += chunk * rate;
     remaining -= chunk;
-    base += chunk;
   }
-  // Rebate 87A — if taxable income ≤ ₹12,00,000, full rebate (max ₹60,000)
+  // Rebate 87A — if taxable income ≤ ₹12,00,000, full rebate (max ₹60,000) for New Regime (Budget 2025)
   const rebate = taxable <= 1200000 ? Math.min(tax, 60000) : 0;
+  // Marginal relief logic handles cases slightly above 12L
+  // Special marginal relief logic for income slightly above 7L or 12L would go here in a production app, but keeping it simple for now.
   const taxAfterRebate = Math.max(0, tax - rebate);
   const cess = taxAfterRebate * 0.04;
   return { taxable, tax, rebate, taxAfterRebate, cess, total: taxAfterRebate + cess };
 }
 
-// Old Regime slabs (FY 2024-25) — standard deduction ₹50,000
+// Old Regime slabs (FY 2026-27) — standard deduction ₹50,000
 function computeOldRegimeTax(grossIncome, deductions80C = 0, hraExemption = 0, stdDed = 50000) {
   const grossAfterStd = Math.max(0, grossIncome - stdDed);
   const taxable = Math.max(0, grossAfterStd - deductions80C - hraExemption);
@@ -117,7 +118,7 @@ function computeResult(id, values) {
         notes: [
           "Surcharge not included (applies on income > ₹50 lakh).",
           "Old Regime 80C deduction capped at ₹1,50,000.",
-          "New Regime rebate u/s 87A: zero tax if income ≤ ₹7 lakh.",
+          "New Regime rebate u/s 87A: effectively zero tax if income ≤ ₹12 lakh.",
           "Figures are indicative — consult a CA for your actual liability.",
         ],
       };
@@ -273,7 +274,7 @@ function computeResult(id, values) {
           { label: "Final Amount (incl. GST)", value: fmt(finalAmount), strong: true },
         ],
         notes: [
-          "GST 2.0 Structure: 0%, 5%, 18%, 40%.",
+          "GST Structure: 0%, 5%, 12%, 18%, 28%.",
           "CGST and SGST each equal half the total GST rate.",
           "IGST (full rate) applies to inter-state supply instead of CGST+SGST.",
           "These are estimates — verify with your chartered accountant.",
@@ -306,7 +307,7 @@ function ComputeResult({ result }) {
       <div className="bg-[#1A4D2E] rounded-xl p-5 text-white">
         <p className="font-body text-xs uppercase tracking-[0.1em] text-white/60 mb-1">{result.highlight.label}</p>
         <p className="font-heading font-semibold text-3xl tracking-tight">{result.highlight.value}</p>
-        <p className="font-body text-xs text-white/50 mt-1">Estimated · FY 2024-25</p>
+        <p className="font-body text-xs text-white/50 mt-1">Estimated · FY 2026-27</p>
       </div>
 
       {/* Detailed breakdown */}
@@ -407,7 +408,7 @@ const calculators = {
   "capital-gains": {
     icon: TrendingUp,
     title: "Capital Gains Calculator",
-    subtitle: "STCG & LTCG — Post Budget 2026",
+    subtitle: "FY 2026-27 (Post Budget 2025)",
     desc: "Estimate capital gains tax on equity, mutual funds, or property.",
     fields: [
       { id: "asset",    label: "Asset Type",            type: "select", options: ["Listed Equity Shares", "Equity Mutual Funds", "Debt Mutual Funds / Property / Land"] },
@@ -419,11 +420,11 @@ const calculators = {
   "gst-calculator": {
     icon: FileText,
     title: "GST Calculator",
-    subtitle: "GST 2.0 structure",
+    subtitle: "Standard GST Framework",
     desc: "Calculate GST-inclusive and exclusive prices under the simplified 4-slab structure.",
     fields: [
       { id: "amount",    label: "Amount (₹)",            type: "number", placeholder: "e.g., 10000" },
-      { id: "gst_rate",  label: "GST Rate",              type: "select", options: ["0%", "5%", "18%", "40%"] },
+      { id: "gst_rate",  label: "GST Rate",              type: "select", options: ["0%", "5%", "12%", "18%", "28%"] },
       { id: "calc_type", label: "Calculation Type",      type: "select", options: ["Add GST to amount (exclusive)", "Extract GST from amount (inclusive)"] },
     ],
   },

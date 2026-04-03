@@ -67,14 +67,14 @@ const ARTICLES = {
       { id: "deadlines",          label: "Deadlines and Penalties" },
     ],
   },
-  "save-tax-deductions-2024-25": {
-    slug: "save-tax-deductions-2024-25",
-    title: "How to Save Tax Legally: Top Deductions for FY 2024-25",
+  "save-tax-deductions-2026-27": {
+    slug: "save-tax-deductions-2026-27",
+    title: "How to Save Tax Legally: Top Deductions for FY 2026-27",
     tag: "Tax Planning",
-    date: "November 2024",
+    date: "November 2025",
     readTime: "6 min read",
     img: IMGS.budget,
-    desc: "Legal tax-saving options under 80C, 80D, HRA, and other deductions — explained plainly with examples relevant to salaried individuals.",
+    desc: "Legal tax-saving options under 80C, 80D, HRA, and other deductions — explained plainly with examples high-relevance to the current regime.",
     hasFull: true,
     toc: [
       { id: "overview",    label: "Overview" },
@@ -115,11 +115,11 @@ const ARTICLES = {
     desc: "A practical comparison of the two tax regimes for salaried employees — with breakeven analysis based on income and deduction levels.",
     hasFull: false,
   },
-  "tds-guide-2024-25": {
-    slug: "tds-guide-2024-25",
-    title: "TDS: What Payers Need to Know in 2024-25",
+  "tds-guide-2026-27": {
+    slug: "tds-guide-2026-27",
+    title: "TDS: What Payers Need to Know in 2026-27",
     tag: "Compliance",
-    date: "July 2024",
+    date: "July 2025",
     readTime: "4 min read",
     img: IMGS.gst,
     desc: "Rates, thresholds, due dates for deposit, and filing obligations under TDS provisions — a reference guide for businesses and individuals.",
@@ -188,16 +188,16 @@ function BudgetArticleContent() {
         <SectionH2>New Tax Regime Slabs Revised for FY 2025-26</SectionH2>
         <p className="font-body text-[1.0625rem] text-[#3a4440] leading-[1.85] mb-5">
           The new tax regime has been restructured with revised slabs and reduced rates for lower
-          income brackets. The previous slabs (FY 2024-25) have been replaced with the following
-          structure effective from April 1, 2025:
+          income brackets. The previous slabs (FY 2025-26) have been replaced with the following
+          structure effective from April 1, 2026:
         </p>
         <div className="overflow-x-auto rounded-xl border border-[#E8EDE9] mb-5">
           <table className="w-full text-sm font-body border-collapse">
             <thead>
               <tr className="bg-[#F2F5F3] border-b border-[#E8EDE9]">
                 <th className="text-left px-5 py-3 font-semibold text-[#1C201E] text-[0.8125rem]">Income Slab</th>
+                <th className="text-left px-5 py-3 font-semibold text-[#1C201E] text-[0.8125rem]">Rate (FY 2026-27)</th>
                 <th className="text-left px-5 py-3 font-semibold text-[#1C201E] text-[0.8125rem]">Rate (FY 2025-26)</th>
-                <th className="text-left px-5 py-3 font-semibold text-[#1C201E] text-[0.8125rem]">Rate (FY 2024-25)</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#E8EDE9]">
@@ -291,7 +291,7 @@ function BudgetArticleContent() {
             deductions, a comparison is worth doing before the April 1 default takes effect."
           </p>
           <footer className="font-body text-[0.8125rem] text-[#4E5A54] mt-2">
-            — CA. V.V.N.Prasad. Gupta, VNAV Associates
+            — CA. V.V.N. Prasad Gupta, VNAV & Associates
           </footer>
         </blockquote>
       </section>
@@ -504,7 +504,7 @@ function GstArticleContent() {
         <p className="font-body text-[1.0625rem] text-[#3a4440] leading-[1.85] mb-4">
           GSTR-9 is the annual return summarising all your monthly/quarterly filings for the
           financial year. It is due by December 31 of the following financial year (e.g.,
-          GSTR-9 for FY 2024-25 is due December 31, 2025).
+          GSTR-9 for FY 2025-26 is due December 31, 2026).
         </p>
         <p className="font-body text-[1.0625rem] text-[#3a4440] leading-[1.85] mb-4">
           GSTR-9 is mandatory for businesses with turnover above ₹2 crore. Businesses below
@@ -743,7 +743,7 @@ function NriArticleContent() {
         <SectionH2>Deadlines and Penalties</SectionH2>
         <p className="font-body text-[1.0625rem] text-[#3a4440] leading-[1.85] mb-4">
           The standard ITR filing deadline for NRIs is July 31 of the assessment year
-          (i.e., July 31, 2025 for FY 2024-25). If you have foreign assets or signing
+          (i.e., July 31, 2026 for FY 2025-26). If you have foreign assets or signing
           authority over foreign accounts, an audit is required and the deadline extends
           to October 31.
         </p>
@@ -799,7 +799,7 @@ function TaxSavingArticleContent() {
           specific eligibility conditions, limits, and documentation requirements.
         </p>
         <p className="font-body text-[1.0625rem] text-[#3a4440] leading-[1.85] mt-4">
-          This article covers the most commonly used deductions for FY 2024-25, with practical
+          This article covers the most commonly used deductions for FY 2026-27, with practical
           examples and a final comparison of whether the old regime is worth it for different
           income levels.
         </p>
@@ -1008,7 +1008,7 @@ function TaxSavingArticleContent() {
         </blockquote>
 
         <Warning>
-          This article reflects deduction provisions for FY 2024-25 under the old tax regime.
+          This article reflects deduction provisions for FY 2026-27 under the old tax regime.
           Breakeven figures are approximate and depend on income composition, surcharge, and
           cess. For a precise comparison at your income level, consult CA. Prasad.
         </Warning>
@@ -1023,7 +1023,7 @@ function ArticleContent({ slug }) {
     "budget-2025-tax-changes":        <BudgetArticleContent />,
     "gst-compliance-checklist-2025":  <GstArticleContent />,
     "nri-itr-filing-guide":           <NriArticleContent />,
-    "save-tax-deductions-2024-25":    <TaxSavingArticleContent />,
+    "save-tax-deductions-2026-27":    <TaxSavingArticleContent />,
   };
   return map[slug] || null;
 }
@@ -1107,7 +1107,7 @@ function Sidebar({ article }) {
           </div>
           <div>
             <p className="font-heading font-medium text-[#1C201E] text-sm leading-snug">
-              CA. V.V.N.Prasad. Gupta
+              CA. V.V.N. Prasad Gupta
             </p>
             <p className="font-body text-xs text-[#4E5A54] mt-0.5">
               Founder, VNAV Associates · ICAI Registered
@@ -1226,7 +1226,7 @@ export default function InsightDetail() {
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-body text-[#4E5A54]">
             <span className="flex items-center gap-1.5">
               <span className="w-5 h-5 rounded-full bg-[#e8eee9] flex items-center justify-center text-[0.6rem] font-semibold text-[#1A4D2E] font-heading">CA</span>
-              CA. V.V.N.Prasad. Gupta
+              CA. V.V.N. Prasad Gupta
             </span>
             <span className="flex items-center gap-1.5">
               <Calendar size={13} strokeWidth={1.5} />

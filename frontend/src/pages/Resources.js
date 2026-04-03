@@ -19,7 +19,7 @@ const resources = [
   {
     id: "gst-rate-summary",
     icon: FileText,
-    title: "GST 2.0 Rate Summary",
+    title: "Standard GST Framework Summary",
     type: "Reference",
     category: "references",
     tag: "GST",

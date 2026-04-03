@@ -13,7 +13,7 @@ import Highlighter from "../components/ui/Highlighter";
 const LOCAL_BUSINESS_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "AccountingService",
-  "name": "VNAV Associates",
+  "name": "VNAV & Associates · Chartered Accountants",
   "alternateName": "TaxNext.in",
   "description": "Chartered Accountants specialising in income tax filing, GST compliance, TDS, ROC filings, and business advisory. Led personally by CA. V.V.N. Prasad Gupta.",
   "url": "https://taxnext.in",
@@ -136,7 +136,7 @@ const founderCredentials = [
 ];
 
 const calculatorTeasers = [
-  { icon: BarChart2, title: "Income Tax Calculator", sub: "FY 2024-25 — Old & New Regime", href: "/calculators" },
+  { icon: BarChart2, title: "Income Tax Calculator", sub: "FY 2026-27 — Old & New Regime", href: "/calculators" },
   { icon: Calculator, title: "HRA Exemption Calculator", sub: "Section 10(13A) — Salaried employees", href: "/calculators" },
   { icon: Calculator, title: "Capital Gains Calculator", sub: "STCG & LTCG on shares and property", href: "/calculators" },
 ];
@@ -348,11 +348,11 @@ export default function Home() {
                 />
                 {/* Floating badge */}
                 <div className="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-md rounded-xl border border-[#E8EDE9] px-6 py-5 shadow-lg">
-                  <p className="font-heading font-semibold text-[#1C201E] text-lg leading-tight">CA. V.V.N.Prasad. Gupta</p>
+                  <p className="font-heading font-semibold text-[#1C201E] text-lg leading-tight">CA. V.V.N. Prasad Gupta</p>
                   <p className="font-body text-[0.8125rem] text-[#4E5A54] mt-1 italic opacity-80">Founder, VNAV & Associates</p>
                   <div className="mt-4 opacity-70 grayscale hover:grayscale-0 transition-all duration-500 flex items-center justify-between">
                     <span className="font-serif italic text-2xl text-[#1A4D2E] select-none pointer-events-none" style={{ fontFamily: "'Playfair Display', serif" }}>
-                      VVN Prasad Gupta
+                      CA. V.V.N. Prasad Gupta
                     </span>
                     <div className="flex gap-1.5">
                        {[1,2,3,4,5].map(i => <Star key={i} size={10} fill="#1A4D2E" className="text-[#1A4D2E]" />)}

@@ -41,7 +41,7 @@ function App() {
             <Route path="client-portal" element={<ClientPortal />} />
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
             <Route path="disclaimer" element={<Disclaimer />} />
-            <Route path="terms-and-conditions" element={<TermsConditions />} />
+            <Route path="terms-conditions" element={<TermsConditions />} />
             <Route path="cookie-policy" element={<CookiePolicy />} />
             <Route path="*" element={<NotFound />} />
           </Route>

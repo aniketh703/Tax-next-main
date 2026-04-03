@@ -208,14 +208,14 @@ const About = () => {
               <div className="rounded-2xl overflow-hidden border border-[#E8EDE9]" style={{ boxShadow: "0 8px 32px -8px rgba(0,0,0,0.08)" }}>
                 <img
                   src={FOUNDER_IMAGE}
-                  alt="CA. V.V.N.Prasad. Gupta — Founder, VNAV Associates"
-                  className="w-full h-[480px] object-cover object-top"
+                  alt="CA. V.V.N. Prasad Gupta — Founder, VNAV Associates"
+                  className="w-full h-auto object-cover object-top"
                   loading="lazy"
                 />
               </div>
               <div className="absolute -bottom-5 right-4 sm:right-8 bg-white rounded-xl border border-[#E8EDE9] px-5 py-3.5" style={{ boxShadow: "0 4px 16px -4px rgba(0,0,0,0.1)" }}>
                 <p className="font-heading font-semibold text-[#1C201E] text-[0.875rem] leading-snug">
-                  CA. V.V.N.Prasad. Gupta
+                  CA. V.V.N. Prasad Gupta
                 </p>
                 <p className="font-body text-[0.75rem] text-[#4E5A54]">ICAI Member · Founder, VNAV Associates</p>
               </div>
@@ -239,7 +239,7 @@ const About = () => {
                 <p>
                   <span className="flex items-center gap-2 mb-1">
                     <strong className="text-[#1C201E]">CA. RTN. Vustepalle Venkata Naga Prasad Gupta (Partner – Kurnool)</strong>
-                    <a href="https://www.linkedin.com/in/ca-prasadguptavustepalle/" target="_blank" rel="noopener noreferrer" className="text-[#0A66C2] hover:text-[#004182] transition-colors" aria-label="LinkedIn Profile">
+                    <a href="https://www.linkedin.com/in/ca-v-v-n-v-n-p-gupta-vustepalle-a8a257124/" target="_blank" rel="noopener noreferrer" className="text-[#0A66C2] hover:text-[#004182] transition-colors" aria-label="LinkedIn Profile">
                       <Linkedin size={16} strokeWidth={1.5} />
                     </a>
                   </span>
