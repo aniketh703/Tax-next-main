@@ -122,7 +122,7 @@ export default function Contact() {
               </h2>
               <div className="space-y-5">
                 {[
-                  { icon: MapPin, label: "Kurnool Office", value: "404, Suresh Towers, Santosh Nagar, NH 44 Road, Kurnool – 518003", href: "#" },
+                  { icon: MapPin, label: "Kurnool Office", value: "404, Suresh Towers, Santosh Nagar, NH 44 Road, Kurnool – 518003", href: "https://maps.app.goo.gl/4ySrtxgVsj1inkts5" },
                   { icon: Phone, label: "Kurnool Phone", value: "+91 94404 28417", href: "tel:+919440428417" },
                   { icon: Mail, label: "Kurnool Email", value: "vnav.knl@gmail.com", href: "mailto:vnav.knl@gmail.com" },
                   { icon: MapPin, label: "Chennai Office", value: "Flat No. C, No. 9, Jai Nagar, 15th Street, Arumbakkam, Chennai – 600106", href: "#" },
@@ -162,6 +162,34 @@ export default function Contact() {
                 <p>Monday – Saturday: 9:30 AM – 6:30 PM</p>
                 <p>Sunday: Closed</p>
                 <p className="text-[#1A4D2E] font-medium mt-3">WhatsApp available after hours</p>
+              </div>
+            </motion.div>
+
+            {/* Kurnool Location QR */}
+            <motion.div variants={fadeInUp} className="bg-white rounded-xl border border-[#E8EDE9] p-5 shadow-sm">
+              <p className="font-heading font-medium text-[#1C201E] text-[0.875rem] mb-4">Kurnool Office Location</p>
+              <div className="flex flex-col sm:flex-row items-center gap-5">
+                <div className="w-32 h-32 bg-[#F2F5F3] rounded-lg overflow-hidden border border-[#E8EDE9] flex items-center justify-center">
+                  <img 
+                    src={process.env.PUBLIC_URL + "/Kurnool Office.png"} 
+                    alt="Scan for Kurnool Office Direction" 
+                    className="w-full h-full object-contain p-2"
+                  />
+                </div>
+                <div className="flex-1">
+                  <p className="font-body text-[0.8125rem] text-[#4E5A54] leading-relaxed mb-3">
+                    Scan this QR code with your mobile camera to get direct directions on Google Maps.
+                  </p>
+                  <a 
+                    href="https://maps.app.goo.gl/4ySrtxgVsj1inkts5" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-[0.75rem] font-semibold text-[#1A4D2E] hover:underline"
+                  >
+                    Open in Maps
+                    <ArrowRight size={12} strokeWidth={2} />
+                  </a>
+                </div>
               </div>
             </motion.div>
 

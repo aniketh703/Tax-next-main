@@ -7,7 +7,7 @@ import {
 import Highlighter from "../components/ui/Highlighter";
 import SEO from "../components/SEO";
 
-const FOUNDER_IMAGE = process.env.PUBLIC_URL + "/founder.jpeg";
+const FOUNDER_IMAGE = process.env.PUBLIC_URL + "/founder.png";
 
 const aboutStats = [
   { value: "Audit", label: "Assurance", sub: "Statutory & Tax Audit" },
