@@ -235,6 +235,11 @@ export default function Services() {
 
   return (
     <>
+      <SEO
+        title="Services | VNAV Associates — Audit, Taxation & Advisory"
+        description="Comprehensive CA services including Statutory Audit, Income Tax filing, GST compliance, and Business Advisory."
+        canonical="/services"
+      />
       {/* ── Page Hero ─────────────────────────────────────── */}
       <motion.section 
         initial="initial"

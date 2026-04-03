@@ -123,6 +123,11 @@ export default function NoticeHandling() {
 
   return (
     <>
+      <SEO
+        title="Tax Notice Response Service | Income Tax & GST Notices"
+        description="Professional handling and response to Income Tax and GST notices by CA. Prasad. Accurate submissions before statutory deadlines."
+        canonical="/notice-handling"
+      />
       {/* ── Hero ─────────────────────────────────────── */}
       <section className="bg-white border-b border-[#E8EDE9]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">

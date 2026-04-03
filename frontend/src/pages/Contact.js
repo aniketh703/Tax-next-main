@@ -57,6 +57,11 @@ export default function Contact() {
 
   return (
     <>
+      <SEO
+        title="Contact VNAV Associates | Chartered Accountants in Kurnool & Chennai"
+        description="Get in touch with CA. V.V.N. Prasad Gupta for professional tax and compliance services."
+        canonical="/contact"
+      />
       {/* ── Hero ─────────────────────────────────────── */}
       <motion.section 
         initial="initial"

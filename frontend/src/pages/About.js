@@ -88,6 +88,11 @@ const staggerContainer = {
 const About = () => {
   return (
     <>
+      <SEO
+        title="About VNAV Associates | Chartered Accountants in Kurnool & Chennai"
+        description="Learn about VNAV & Associates, a professionally managed Chartered Accountancy firm led by CA. V.V.N. Prasad Gupta."
+        canonical="/about"
+      />
       {/* ── Hero ─────────────────────────────────────── */}
       <motion.section 
         initial="initial"

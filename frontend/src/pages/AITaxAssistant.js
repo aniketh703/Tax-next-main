@@ -30,6 +30,11 @@ const features = [
 export default function AITaxAssistant() {
   return (
     <>
+      <SEO
+        title="AI Tax Assistant | Guided Indian Tax Q&A"
+        description="A guided research tool for Indian tax and GST queries, offering plain-language summaries and CA-reviewed answers."
+        canonical="/ai-tax-assistant"
+      />
       {/* ── Hero ─────────────────────────────────────── */}
       <section className="bg-white border-b border-[#E8EDE9]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">

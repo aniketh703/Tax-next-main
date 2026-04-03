@@ -5,6 +5,7 @@ import {
   CheckCircle, BarChart2, TrendingUp, FileText, Home,
   IndianRupee, Info
 } from "lucide-react";
+import SEO from "../components/SEO";
 
 /* ─── Helpers ───────────────────────────────────────────────── */
 const fmt = (n) =>
@@ -462,6 +463,11 @@ export default function CalculatorDetail() {
 
   return (
     <>
+      <SEO
+        title={`${calc.title} | Tax Computation — TaxNext.in`}
+        description={`${calc.desc} Calculate yours for FY 2026-27 (AY 2027-28) using VNAV & Associates professional calculators.`}
+        canonical={`/calculators/${id}`}
+      />
       {/* ── Hero ─────────────────────────────────────── */}
       <section className="bg-white border-b border-[#E8EDE9]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">

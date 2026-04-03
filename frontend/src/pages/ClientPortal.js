@@ -92,6 +92,11 @@ function PortalTeaser() {
 export default function ClientPortal() {
   return (
     <>
+      <SEO
+        title="Client Portal | Secure Compliance Dashboard"
+        description="Private dashboard for VNAV Associates clients to track filings, store documents, and communicate securely."
+        canonical="/client-portal"
+      />
       {/* ── Hero ─────────────────────────────────────── */}
       <section className="bg-white border-b border-[#E8EDE9]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">

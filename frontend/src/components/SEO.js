@@ -5,6 +5,7 @@ const DEFAULT_TITLE = "TaxNext.in — Income Tax, GST & Business Compliance | VN
 const DEFAULT_DESC =
   "CA. V.V.N. Prasad Gupta of VNAV Associates handles ITR filing, GST compliance, and business tax — personally. Hyderabad-based, India-wide.";
 const SITE_URL = "https://taxnext.in";
+const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 
 /**
  * SEO component — drop into any page to set title + meta.
@@ -38,11 +39,13 @@ export default function SEO({ title, description, canonical, noindex = false, sc
       <meta property="og:type"        content="website" />
       <meta property="og:site_name"   content={SITE_NAME} />
       {resolvedCanon && <meta property="og:url" content={resolvedCanon} />}
+      <meta property="og:image"       content={DEFAULT_OG_IMAGE} />
 
       {/* Twitter Card */}
-      <meta name="twitter:card"        content="summary" />
+      <meta name="twitter:card"        content="summary_large_image" />
       <meta name="twitter:title"       content={resolvedTitle} />
       <meta name="twitter:description" content={resolvedDesc} />
+      <meta name="twitter:image"       content={DEFAULT_OG_IMAGE} />
 
       {/* JSON-LD Schema (optional, pass as string) */}
       {schema && (
