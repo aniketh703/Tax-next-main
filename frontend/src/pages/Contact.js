@@ -51,7 +51,7 @@ export default function Contact() {
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone || 'Not provided'}\nService Required: ${form.service || 'Not specified'}\n\nMessage:\n${form.message}`
     );
-    window.open(`mailto:taxnext.in@gmail.com?subject=${subject}&body=${body}`, '_blank');
+    window.open(`mailto:taxnext0204.in@gmail.com?subject=${subject}&body=${body}`, '_blank');
     setSubmitted(true);
   };
 
@@ -134,7 +134,7 @@ export default function Contact() {
                   { icon: Phone, label: "Chennai Phone", value: "+91 94404 28417", href: "tel:+919440428417" },
                   { icon: Mail, label: "Chennai Email", value: "vnav.chennai@gmail.com", href: "mailto:vnav.chennai@gmail.com" },
                   { icon: Phone, label: "General Phone", value: "+91 94404 28417", href: "tel:+919440428417" },
-                  { icon: Mail, label: "General Email", value: "taxnext.in@gmail.com", href: "mailto:taxnext.in@gmail.com" },
+                  { icon: Mail, label: "General Email", value: "taxnext0204.in@gmail.com", href: "mailto:taxnext0204.in@gmail.com" },
                 ].map(({ icon: Icon, label, value, href }) => (
                   <a
                     key={label}
@@ -365,12 +365,12 @@ export default function Contact() {
                   <p className="font-body text-xs text-[#9BABA2] mb-2">Technical issues with the form?</p>
                   <button 
                     onClick={() => {
-                        navigator.clipboard.writeText("taxnext.in@gmail.com");
+                        navigator.clipboard.writeText("taxnext0204.in@gmail.com");
                         alert("Email address copied to clipboard!");
                     }}
                     className="text-[0.75rem] font-medium text-[#1A4D2E] hover:underline"
                   >
-                    Copy email address (taxnext.in@gmail.com)
+                    Copy email address (taxnext0204.in@gmail.com)
                   </button>
                 </div>
               </div>

@@ -56,7 +56,7 @@ export default function PrivacyPolicy() {
           <div>
             <h2 className="font-heading font-medium text-xl text-[#1C201E] mb-3">5. Contact Information</h2>
             <p>
-              For privacy-related matters, you may contact the Firm at taxnext.in@gmail.com.
+              For privacy-related matters, you may contact the Firm at taxnext0204.in@gmail.com.
             </p>
           </div>
         </div>

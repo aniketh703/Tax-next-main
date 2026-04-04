@@ -147,8 +147,8 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={15} strokeWidth={1.5} className="text-[#1A4D2E] shrink-0" />
-                <a href="mailto:taxnext.in@gmail.com" className="font-body text-sm text-[#9baba2] hover:text-white transition-colors">
-                  taxnext.in@gmail.com
+                <a href="mailto:taxnext0204.in@gmail.com" className="font-body text-sm text-[#9baba2] hover:text-white transition-colors">
+                  taxnext0204.in@gmail.com
                 </a>
               </li>
             </ul>
