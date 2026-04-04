@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Linkedin, Twitter, Facebook, ArrowRight } from "lucide-react";
+import VisitorCounter from "./VisitorCounter";
 
 const servicesLinks = [
   { name: "Audit & Assurance", href: "/services" },
@@ -172,9 +173,13 @@ export default function Footer() {
       <div className="border-t border-white/10 mt-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row items-center justify-between gap-5">
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left">
-            <p className="font-body text-xs text-[#7a8c82]">
-              © {new Date().getFullYear()} VNAV & Associates | Chartered Accountants
-            </p>
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-3">
+              <p className="font-body text-xs text-[#7a8c82]">
+                © {new Date().getFullYear()} VNAV & Associates | Chartered Accountants
+              </p>
+              <div className="hidden sm:block w-px h-3 bg-white/10 mx-2" />
+              <VisitorCounter />
+            </div>
             <div className="flex flex-wrap justify-center gap-3 sm:gap-4 border-t sm:border-t-0 sm:border-l border-white/10 pt-3 sm:pt-0 sm:pl-6">
               <Link to="/privacy-policy" className="font-body text-xs text-[#7a8c82] hover:text-white transition-colors">Privacy Policy</Link>
               <Link to="/disclaimer" className="font-body text-xs text-[#7a8c82] hover:text-white transition-colors">Disclaimer</Link>
