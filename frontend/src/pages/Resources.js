@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {
   FileText, Download, BookOpen, ExternalLink, ArrowRight, ChevronRight
 } from "lucide-react";
+import SEO from "../components/SEO";
 
 /* ─── Resource data ─────────────────────────────────────────── */
 const resources = [
@@ -91,7 +92,7 @@ export default function Resources() {
           <span className="block text-[11px] uppercase tracking-[0.14em] font-semibold text-[#1A4D2E] mb-3 font-body">
             Free Resources
           </span>
-          <h1 className="font-heading font-semibold text-[2.25rem] sm:text-[2.75rem] tracking-tight leading-[1.1] text-[#1C201E] mb-3 max-w-2xl">
+          <h1 className="font-heading font-semibold text-[1.75rem] sm:text-[2.25rem] lg:text-[2.75rem] tracking-tight leading-[1.1] text-[#1C201E] mb-3 max-w-2xl">
             Guides, checklists, and reference materials.
           </h1>
           <p className="font-body text-base text-[#4E5A54] leading-relaxed max-w-xl">

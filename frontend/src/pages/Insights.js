@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, BookOpen, ChevronRight } from "lucide-react";
+import SEO from "../components/SEO";
 
 const IMGS = {
   budget:   "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?crop=entropy&cs=srgb&fm=jpg&w=600&q=75",
@@ -126,7 +127,7 @@ export default function Insights() {
           <span className="block text-[11px] uppercase tracking-[0.14em] font-semibold text-[#1A4D2E] mb-3 font-body">
             Knowledge Hub
           </span>
-          <h1 className="font-heading font-semibold text-[2.25rem] sm:text-[2.75rem] tracking-tight leading-[1.1] text-[#1C201E] mb-3 max-w-2xl">
+          <h1 className="font-heading font-semibold text-[1.75rem] sm:text-[2.25rem] lg:text-[2.75rem] tracking-tight leading-[1.1] text-[#1C201E] mb-3 max-w-2xl">
             Tax insights and practical guidance.
           </h1>
           <p className="font-body text-base text-[#4E5A54] leading-relaxed max-w-xl">

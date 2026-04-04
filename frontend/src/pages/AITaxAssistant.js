@@ -3,6 +3,7 @@ import {
   ChevronRight, Bell, CheckCircle, ArrowRight, Phone,
   HelpCircle, FileSearch, BookOpen, Shield
 } from "lucide-react";
+import SEO from "../components/SEO";
 
 const features = [
   {
@@ -52,7 +53,7 @@ export default function AITaxAssistant() {
           <span className="block text-[11px] uppercase tracking-[0.14em] font-semibold text-[#1A4D2E] mb-3 font-body">
             Tax Guidance Tool
           </span>
-          <h1 className="font-heading font-semibold text-[2.25rem] sm:text-[2.75rem] lg:text-[3rem] tracking-tight leading-[1.1] text-[#1C201E] mb-4 max-w-3xl">
+          <h1 className="font-heading font-semibold text-[1.875rem] sm:text-[2.25rem] lg:text-[2.75rem] tracking-tight leading-[1.1] text-[#1C201E] mb-4 max-w-3xl">
             Clear answers to Indian tax questions. At any hour.
           </h1>
           <p className="font-body text-base text-[#4E5A54] leading-relaxed max-w-xl mb-6">

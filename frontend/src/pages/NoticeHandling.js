@@ -5,6 +5,7 @@ import {
   FileText, Building2, Calculator, Search, Shield, Clock,
   ChevronDown
 } from "lucide-react";
+import SEO from "../components/SEO";
 
 /* ─── Notice types ──────────────────────────────────────────── */
 const noticeTypes = [
@@ -150,7 +151,7 @@ export default function NoticeHandling() {
               <span className="block text-[11px] uppercase tracking-[0.14em] font-semibold text-[#1A4D2E] mb-3 font-body">
                 Notice Handling Service
               </span>
-              <h1 className="font-heading font-semibold text-[2.25rem] sm:text-[2.75rem] lg:text-[3rem] tracking-tight leading-[1.1] text-[#1C201E] mb-4">
+              <h1 className="font-heading font-semibold text-[2rem] sm:text-[2.5rem] lg:text-[3rem] tracking-tight leading-[1.1] text-[#1C201E] mb-4">
                 Received a tax notice?<br />
                 <span className="text-[#1A4D2E]">Take action now.</span>
               </h1>

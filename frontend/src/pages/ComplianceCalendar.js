@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Calendar, AlertCircle, ArrowRight, ChevronRight, Filter } from "lucide-react";
+import SEO from "../components/SEO";
 
 /* ─── Compliance data ───────────────────────────────────────── */
 const typeConfig = {
@@ -133,7 +134,7 @@ export default function ComplianceCalendar() {
           <span className="block text-[11px] uppercase tracking-[0.14em] font-semibold text-[#1A4D2E] mb-3 font-body">
             FY 2026-27 DUE DATES
           </span>
-          <h1 className="font-heading font-semibold text-[2.25rem] sm:text-[2.75rem] tracking-tight leading-[1.1] text-[#1C201E] mb-3 max-w-2xl">
+          <h1 className="font-heading font-semibold text-[1.75rem] sm:text-[2.25rem] lg:text-[2.75rem] tracking-tight leading-[1.1] text-[#1C201E] mb-3 max-w-2xl">
             Statutory Deadlines for <span className="text-[#1A4D2E]">FY 2026-27</span>.
           </h1>
           <p className="font-body text-base text-[#4E5A54] leading-relaxed max-w-xl">
@@ -194,7 +195,7 @@ export default function ComplianceCalendar() {
               </div>
 
               {/* Table */}
-              <div className="bg-white rounded-xl border border-[#E8EDE9] overflow-hidden shadow-sm">
+              <div className="bg-white rounded-xl border border-[#E8EDE9] overflow-x-auto shadow-sm">
                 <table className="w-full text-sm font-body">
                   <thead>
                     <tr className="border-b border-[#E8EDE9] bg-[#FBFBF9]">
