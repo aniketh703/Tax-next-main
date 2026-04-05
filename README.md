@@ -1,9 +1,17 @@
 # Tax Next IN
 
-This is a private client project developed for **Prasad Gupta VVN**, a Chartered Accountant.
+Welcome to the repository for the **Tax Next IN** web application. 
 
-## About
-This repository contains the source code for the **Tax Next IN** website, a sub-brand of **VNAV Associates** run by Prasad Gupta VVN.
+## Project Overview
 
-## Note
-This is a closed-source client project. All rights reserved.
+This is a proprietary, closed-source client project developed exclusively for **Prasad Gupta VVN**, a practicing Chartered Accountant. **Tax Next IN** serves as a digital platform and sub-brand operating under the umbrella of **VNAV Associates**.
+
+## Client Information
+
+- **Client:** Prasad Gupta VVN (Chartered Accountant)
+- **Parent Organization:** VNAV Associates
+- **Brand:** Tax Next IN
+
+## License & Copyright
+
+This repository and its contents are strictly confidential and proprietary. Unauthorized copying, distribution, modification, or public display of this codebase is strictly prohibited. All rights are reserved by the respective owners.
