@@ -47,7 +47,7 @@ export default function AITaxAssistant() {
 
           <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 text-amber-700 text-xs font-medium font-body rounded-full px-3.5 py-1.5 mb-5">
             <Bell size={12} strokeWidth={1.5} />
-            Coming Soon — Launching Q3 2025
+            Coming Soon — Launching Q3 2026
           </div>
 
           <span className="block text-[11px] uppercase tracking-[0.14em] font-semibold text-[#1A4D2E] mb-3 font-body">

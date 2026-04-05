@@ -3,14 +3,17 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   BarChart2, TrendingUp, FileText,
-  ChevronRight, ArrowRight, Clock, Home
+  ChevronRight, ArrowRight, Clock, Home,
+  ShieldCheck, TrendingDown
 } from "lucide-react";
 import Highlighter from "../components/ui/Highlighter";
 import SEO from "../components/SEO";
+import { CompliancePulse } from "../components/calculators/CompliancePulse";
 
 const categories = [
-  { id: "tax", label: "Income Tax" },
-  { id: "gst", label: "GST & Indirect Tax" },
+  { id: "tax", label: "Tax Planning" },
+  { id: "invest", label: "Investment Utility" },
+  { id: "gst", label: "Business Utility" },
 ];
 
 const calculatorData = {
@@ -19,31 +22,49 @@ const calculatorData = {
       slug: "income-tax",
       icon: BarChart2,
       title: "Income Tax Calculator",
-      desc: "Estimate your income tax liability under the Old and New Regime for FY 2026-27.",
-      tags: ["Salaried", "Self-Employed"],
+      desc: "Comprehensive logic for FY 2026-27 including 80D, NPS, and Home Loan benefits.",
+      tags: ["Salaried", "Professional"],
+      featured: true,
     },
     {
       slug: "hra-exemption",
-      icon: Home,
-      title: "HRA Exemption Calculator",
-      desc: "Calculate the HRA exemption you can claim under Section 10(13A) based on rent paid and salary.",
-      tags: ["Salaried"],
+      icon: ShieldCheck,
+      title: "HRA Exemption",
+      desc: "Optimize your house rent allowance exemption under Section 10(13A).",
+      tags: ["Renters"],
     },
     {
       slug: "capital-gains",
+      icon: TrendingDown,
+      title: "Capital Gains",
+      desc: "LTCG and STCG computations for Equity and Property (Post-Budget 2024).",
+      tags: ["Investors"],
+    },
+  ],
+  invest: [
+    {
+      slug: "nps-savings",
       icon: TrendingUp,
-      title: "Capital Gains Calculator",
-      desc: "Compute STCG and LTCG on sale of shares, mutual funds, or immovable property.",
-      tags: ["Investors", "Property"],
+      title: "NPS Tax Engine",
+      desc: "Calculate additional savings of up to ₹50,000 under Section 80CCD(1B).",
+      tags: ["Retirement"],
+      featured: true,
+    },
+    {
+      slug: "loan-utility",
+      icon: Home,
+      title: "Loan-Tax Synergy",
+      desc: "Real cost of borrowing analysis after considering Section 24(b) benefits.",
+      tags: ["Home Owners"],
     },
   ],
   gst: [
     {
       slug: "gst-calculator",
       icon: FileText,
-      title: "GST Calculator",
-      desc: "Calculate GST-inclusive and GST-exclusive prices for any rate (0%, 5%, 18%, 40%).",
-      tags: ["Businesses", "Traders"],
+      title: "GST Engine",
+      desc: "Fast Inward/Outward GST computation for B2B and B2C scenarios.",
+      tags: ["Businesses"],
     },
   ],
 };
@@ -70,6 +91,11 @@ export default function Calculators() {
 
   return (
     <>
+      <SEO 
+        title="Professional Tax Calculators | FY 2026-27 | Kurnool & Chennai"
+        description="Calculate Income Tax, HRA, Capital Gains, and GST for FY 2026-27. Professional tools by VNAV Associates, Chartered Accountants."
+        canonical="/calculators"
+      />
       {/* ── Hero ─────────────────────────────────────── */}
       <motion.section 
         initial="initial"
@@ -131,13 +157,24 @@ export default function Calculators() {
 
       {/* ── Calculator Cards ──────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="mb-8">
-          <h2 className="font-heading font-medium text-[1.5rem] text-[#1C201E] tracking-tight mb-1">
-            {categories.find((c) => c.id === activeCategory)?.label}
-          </h2>
-          <p className="font-body text-sm text-[#4E5A54]">
-            {visibleCalcs.length} calculator{visibleCalcs.length !== 1 ? "s" : ""} available
-          </p>
+        <div className="grid lg:grid-cols-3 gap-8 mb-12">
+          <div className="lg:col-span-2">
+            <h2 className="font-heading font-medium text-[1.875rem] text-[#1C201E] tracking-tight mb-2">
+              {categories.find((c) => c.id === activeCategory)?.label}
+            </h2>
+            <p className="font-body text-base text-[#4E5A54] max-w-xl">
+              Select a specialized tool to compute your tax liability or exemption based on the latest <strong>Finance Act 2024 & 2025</strong> provisions.
+            </p>
+            <div className="mt-4 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#1A4D2E]"></span>
+              <p className="font-body text-xs font-semibold text-[#1A4D2E] underline underline-offset-4 decoration-[#1A4D2E]/30 uppercase tracking-widest">
+                {visibleCalcs.length} Specialized Tool{visibleCalcs.length !== 1 ? "s" : ""} Available
+              </p>
+            </div>
+          </div>
+          <div className="lg:col-span-1">
+             <CompliancePulse />
+          </div>
         </div>
 
         <AnimatePresence mode="wait">
@@ -160,6 +197,11 @@ export default function Calculators() {
                       <div className="w-12 h-12 rounded-xl bg-[#F2F5F3] group-hover:bg-[#1A4D2E] flex items-center justify-center transition-colors">
                         <Icon size={20} strokeWidth={1.5} className="text-[#1A4D2E] group-hover:text-white transition-colors" />
                       </div>
+                      {calc.featured && (
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-100 text-amber-800 rounded-full text-[9px] font-bold uppercase tracking-wider border border-amber-200">
+                          <Star size={10} fill="currentColor" /> Featured Tool
+                        </span>
+                      )}
                     </div>
                     <h3 className="font-heading font-medium text-lg text-[#1C201E] mb-2.5 group-hover:text-[#1A4D2E] transition-colors">
                       {calc.title}

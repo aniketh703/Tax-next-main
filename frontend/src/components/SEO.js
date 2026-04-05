@@ -1,11 +1,36 @@
 import { Helmet } from "react-helmet-async";
 
 const SITE_NAME = "TaxNext.in — VNAV Associates";
-const DEFAULT_TITLE = "TaxNext.in — Income Tax, GST & Business Compliance | VNAV Associates";
+const DEFAULT_TITLE = "TaxNext.in — Best CA in Kurnool & Chennai | Income Tax, GST & Compliance";
 const DEFAULT_DESC =
-  "CA. V.V.N. Prasad Gupta of VNAV Associates handles ITR filing, GST compliance, and business tax — personally. Hyderabad-based, India-wide.";
+  "CA. V.V.N. Prasad Gupta of VNAV Associates (Kurnool & Chennai) provides professional ITR filing, GST compliance, and audit services. Primary Office: Kurnool.";
 const SITE_URL = "https://taxnext.in";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
+const DEFAULT_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "TaxAdviceService",
+  "name": "VNAV Associates — TaxNext.in",
+  "description": "Professional Chartered Accountant services in Kurnool and Chennai.",
+  "url": "https://taxnext.in",
+  "address": [
+    {
+      "@type": "PostalAddress",
+      "streetAddress": "404, Suresh Towers, Santosh Nagar, NH 44 Road",
+      "addressLocality": "Kurnool",
+      "addressRegion": "Andhra Pradesh",
+      "postalCode": "518003",
+      "addressCountry": "IN"
+    },
+    {
+      "@type": "PostalAddress",
+      "streetAddress": "Flat No. C, No. 9, Jai Nagar, 15th Street, Arumbakkam",
+      "addressLocality": "Chennai",
+      "addressRegion": "Tamil Nadu",
+      "postalCode": "600106",
+      "addressCountry": "IN"
+    }
+  ]
+};
 
 /**
  * SEO component — drop into any page to set title + meta.
@@ -21,6 +46,7 @@ export default function SEO({ title, description, canonical, noindex = false, sc
   const resolvedTitle  = title       || DEFAULT_TITLE;
   const resolvedDesc   = description || DEFAULT_DESC;
   const resolvedCanon  = canonical   ? `${SITE_URL}${canonical}` : null;
+  const resolvedSchema = schema      || DEFAULT_SCHEMA;
 
   return (
     <Helmet>
@@ -47,9 +73,9 @@ export default function SEO({ title, description, canonical, noindex = false, sc
       <meta name="twitter:description" content={resolvedDesc} />
       <meta name="twitter:image"       content={DEFAULT_OG_IMAGE} />
 
-      {/* JSON-LD Schema (optional, pass as string) */}
-      {schema && (
-        <script type="application/ld+json">{JSON.stringify(schema)}</script>
+      {/* JSON-LD Schema */}
+      {resolvedSchema && (
+        <script type="application/ld+json">{JSON.stringify(resolvedSchema)}</script>
       )}
     </Helmet>
   );

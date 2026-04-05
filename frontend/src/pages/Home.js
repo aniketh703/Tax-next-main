@@ -265,8 +265,8 @@ export default function Home() {
   return (
     <>
       <SEO 
-        title="VNAV Associates | Chartered Accountants & Tax Consultants"
-        description="Professional CA services in Audit, Taxation, GST, and Business Advisory. Led by CA. V.V.N. Prasad Gupta."
+        title="Best CA in Kurnool & Chennai | VNAV Associates | Chartered Accountants"
+        description="Professional CA services in Kurnool & Chennai for Audit, Taxation, GST, and Business Advisory. Expert tax planning for FY 2026-27."
         schema={LOCAL_BUSINESS_SCHEMA}
       />
 
@@ -282,12 +282,14 @@ export default function Home() {
               viewport={{ once: true }}
               variants={staggerContainer}
             >
-              <motion.span 
-                variants={fadeInUp}
-                className="block text-[10.5px] uppercase tracking-[0.16em] font-semibold text-[#1A4D2E] mb-6 font-body"
-              >
-                VNAV & Associates · Chartered Accountants
-              </motion.span>
+              <motion.div variants={fadeInUp} className="flex items-center gap-3 mb-6">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#1A4D2E]/10 rounded-full text-[10px] font-bold uppercase tracking-wider text-[#1A4D2E]">
+                  Primary: Kurnool
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#F2F5F3] rounded-full text-[10px] font-bold uppercase tracking-wider text-[#4E5A54]">
+                  Chennai Office
+                </span>
+              </motion.div>
 
               <motion.h1 
                 variants={fadeInUp}
@@ -449,6 +451,95 @@ export default function Home() {
               );
             })}
           </motion.div>
+        </div>
+      </section>
+
+      {/* ── 3.5 CALCULATOR SUITE (PROMINENT) ─────────────────── */}
+      <section className="bg-white py-24 lg:py-32 border-t border-[#E8EDE9] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+            <div className="max-w-2xl">
+              <span className="block text-[10.5px] uppercase tracking-[0.16em] font-semibold text-[#1A4D2E] mb-4 font-body">
+                Professional Utility
+              </span>
+              <h2 className="font-heading font-medium text-[2.25rem] sm:text-[3rem] text-[#1C201E] tracking-tight leading-none mb-6">
+                Professional <span className="text-[#1A4D2E]">Tax Suite.</span>
+              </h2>
+              <p className="font-body text-sm text-[#4E5A54] leading-relaxed">
+                Advanced computation tools built for the **Income Tax Act, 2025**. Accurate estimations for FY 2026-2027 including Surcharge and Marginal Relief.
+              </p>
+            </div>
+            <Link
+              to="/calculators"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[#1A4D2E] font-body hover:gap-3 transition-all"
+            >
+              Explore all calculators <ArrowRight size={16} strokeWidth={1.5} />
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+            {[
+              { 
+                title: "Income Tax Tool", 
+                sub: "FY 2026-27 Multi-Regime", 
+                icon: BarChart2, 
+                desc: "Calculate taxes for Salary and Business with detailed surcharge logic.",
+                href: "/calculators/income-tax",
+                priority: true
+              },
+              { 
+                title: "NPS Tax Engine", 
+                sub: "Section 80CCD(1B)", 
+                icon: Calculator, 
+                desc: "Estimate additional tax savings on contributions up to ₹50,000.",
+                href: "/calculators/nps-savings"
+              },
+              { 
+                title: "Loan-Tax Synergy", 
+                sub: "Section 24(b) Analysis", 
+                icon: Building2, 
+                desc: "Visualizing the effective interest rate on home loans after tax.",
+                href: "/calculators/loan-utility"
+              }
+            ].map((calc, i) => {
+              const Icon = calc.icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className={`group relative p-8 rounded-3xl border transition-all duration-300 ${
+                    calc.priority 
+                      ? "bg-gradient-to-br from-[#1A4D2E] to-[#133b23] border-transparent text-white shadow-2xl" 
+                      : "bg-[#FBFBF9] border-[#E8EDE9] hover:border-[#1A4D2E]/20"
+                  }`}
+                >
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 shadow-sm ${
+                    calc.priority ? "bg-white/10" : "bg-white"
+                  }`}>
+                    <Icon size={20} strokeWidth={1.5} className={calc.priority ? "text-white" : "text-[#1A4D2E]"} />
+                  </div>
+                  <h3 className="font-heading font-semibold text-xl mb-1">{calc.title}</h3>
+                  <p className={`font-body text-[10px] uppercase tracking-widest mb-4 ${calc.priority ? "text-white/60" : "text-[#4E5A54]"}`}>
+                    {calc.sub}
+                  </p>
+                  <p className={`font-body text-sm leading-relaxed mb-8 ${calc.priority ? "text-white/80" : "text-[#4E5A54]"}`}>
+                    {calc.desc}
+                  </p>
+                  <Link
+                    to={calc.href}
+                    className={`inline-flex items-center gap-2 text-sm font-semibold font-body transition-all ${
+                      calc.priority ? "text-white hover:gap-3" : "text-[#1A4D2E] hover:gap-3"
+                    }`}
+                  >
+                    Launch <ArrowRight size={14} strokeWidth={1.5} />
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </section>
 

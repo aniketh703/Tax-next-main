@@ -240,3 +240,59 @@ html {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* ─── Print & PDF Optimization ────────────────────────────── */
+@media print {
+    /* Hide everything except the result container */
+    header, footer, nav, aside, .print\:hidden, button, .sidebar-content {
+        display: none !important;
+    }
+
+    body, html, .App, #main-content {
+        background: white !important;
+        color: black !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Target the specific result container in CalculatorDetail */
+    .print\:m-0 {
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    /* Force background colors and charts to show in PDF */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .bg-\[\#1A4D2E\] {
+        background-color: #1A4D2E !important;
+        color: white !important;
+    }
+
+    .rounded-3xl {
+        border-radius: 1.5rem !important;
+    }
+
+    /* Break avoid for essential result blocks */
+    .grid {
+        display: block !important;
+    }
+    
+    .grid > div {
+        margin-bottom: 2rem !important;
+        page-break-inside: avoid;
+    }
+
+    @page {
+        margin: 1cm;
+        size: auto;
+    }
+}
